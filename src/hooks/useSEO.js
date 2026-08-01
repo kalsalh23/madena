@@ -2,17 +2,24 @@ import { useEffect } from 'react';
 import { SITE } from '@/lib/constants';
 
 function setMeta(attr, key, value) {
-  let el = document.head.querySelector(`${attr}[${key}="${value}"]`);
+  let el = null;
+  for (const m of document.head.querySelectorAll('meta')) {
+    if (m.getAttribute(attr) === key) {
+      el = m;
+      break;
+    }
+  }
   if (!el) {
     el = document.createElement('meta');
     el.setAttribute(attr, key);
     document.head.appendChild(el);
   }
+  el.setAttribute('content', value);
 }
 
 export function useSEO({ title, description, image, type = 'website', url } = {}) {
   useEffect(() => {
-    const siteUrl = import.meta.env.VITE_SITE_URL || '';
+    const siteUrl = (typeof window !== 'undefined' ? window.location.origin : '') || import.meta.env.VITE_SITE_URL || '';
     const fullUrl = url ? `${siteUrl}${url}` : siteUrl;
 
     document.title = title ? `${title} | ${SITE.name}` : `${SITE.name} — ${SITE.tagline}`;
