@@ -1,0 +1,10 @@
+{
+  "project_id": "madinti",
+  "org_id": "madinti",
+  "project_name": "مدينتي",
+  "auth": {
+    "enable_signup": false,
+    "email": { "enable_signup": false, "enable_confirmations": false }
+  },
+  "storage": { "buckets": [{ "name": "media", "public": true }] }
+}
