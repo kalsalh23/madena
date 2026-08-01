@@ -169,7 +169,7 @@ export const demoPages = [
 ];
 
 export const demoSettings = {
-  site_name: 'مدينتي',
+  site_name: 'طيبة الإمام',
   site_tagline: 'بوابة المدينة الشاملة',
   site_description: 'بوابة إلكترونية تقدم كل ما يخص المدينة من الأخبار والمشاريع والأماكن والفعاليات.',
   hero_image: 'https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?w=1600&q=80',
@@ -185,7 +185,12 @@ export const demoSettings = {
   map_center_lat: '24.7136',
   map_center_lng: '46.6753',
   about_us: 'نحن بوابة إلكترونية موثوقة تقدم كل ما يخص المدينة من معلومات وخدمات.',
-  footer_text: '© 2026 مدينتي — جميع الحقوق محفوظة.',
+  footer_text: '© 2026 طيبة الإمام — جميع الحقوق محفوظة.',
+  ad_enabled: '1',
+  ad_title: 'انطلاقة مشروع النقل الذكي الجديد',
+  ad_text: 'تعرف على خطة تحديث شبكة النقل العام في طيبة الإمام وخدماتها الجديدة لسكان المدينة وزوارها.',
+  ad_image: 'https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=1200&q=80',
+  ad_link: 'https://example.com',
 };
 
 export const demoOverviews = {

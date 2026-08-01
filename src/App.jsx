@@ -35,6 +35,7 @@ const CategoriesManagePage = lazy(() => import('@/pages/admin/CategoriesManagePa
 const PagesManagePage = lazy(() => import('@/pages/admin/PagesManagePage'));
 const PartnersManagePage = lazy(() => import('@/pages/admin/PartnersManagePage'));
 const SettingsPage = lazy(() => import('@/pages/admin/SettingsPage'));
+const AboutPlatformPage = lazy(() => import('@/pages/admin/AboutPlatformPage'));
 
 function PageLoader() {
   return (
@@ -90,6 +91,7 @@ export default function App() {
         <Route path="pages" element={withSuspense(<PagesManagePage />)} />
         <Route path="partners" element={withSuspense(<PartnersManagePage />)} />
         <Route path="settings" element={withSuspense(<SettingsPage />)} />
+        <Route path="about" element={withSuspense(<AboutPlatformPage />)} />
       </Route>
 
       <Route path="*" element={<NotFoundPage />} />

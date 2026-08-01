@@ -1,4 +1,5 @@
 import Hero from '@/components/home/Hero';
+import AdBanner from '@/components/home/AdBanner';
 import Stats from '@/components/home/Stats';
 import Services from '@/components/home/Services';
 import LatestNews from '@/components/home/LatestNews';
@@ -17,6 +18,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <AdBanner />
       <Stats />
       <Services />
       <LatestNews />

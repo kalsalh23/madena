@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
+import { SITE } from '@/lib/constants';
 
 export default function Logo({ className, dark = false, to = '/' }) {
   return (
@@ -11,7 +12,7 @@ export default function Logo({ className, dark = false, to = '/' }) {
       </span>
       <span className="flex flex-col leading-tight">
         <span className={cn('font-display text-lg font-extrabold', dark ? 'text-cream' : 'text-brand-900')}>
-          مدينتي
+          {SITE.name}
         </span>
         <span className={cn('text-[10px] font-medium tracking-wide', dark ? 'text-cream/70' : 'text-gold-700')}>
           بوابة المدينة الشاملة

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@/services';
+import { SITE } from '@/lib/constants';
 
 export function useCategories(type) {
   return useQuery({
@@ -23,7 +24,7 @@ export function useDebounce(value, delay = 350) {
 export function useDocumentTitle(title) {
   useEffect(() => {
     const prev = document.title;
-    document.title = title ? `${title} | مدينتي` : 'مدينتي — بوابة المدينة الشاملة';
+    document.title = title ? `${title} | ${SITE.name}` : `${SITE.name} — ${SITE.tagline}`;
     return () => {
       document.title = prev;
     };

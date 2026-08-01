@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   LayoutDashboard, Newspaper, Building2, Map, Image as ImageIcon, Play,
   CalendarDays, BarChart3, FileText, Handshake, Settings as SettingsIcon,
-  LogOut, Menu, X, ExternalLink,
+  LogOut, Menu, X, ExternalLink, Info,
 } from 'lucide-react';
 import Logo from '@/components/layout/Logo';
 import { useAuth } from '@/contexts/AuthContext';
@@ -22,6 +22,7 @@ const nav = [
   { to: '/admin/pages', label: 'الصفحات', icon: FileText },
   { to: '/admin/partners', label: 'الشركاء', icon: Handshake },
   { to: '/admin/settings', label: 'إعدادات الموقع', icon: SettingsIcon },
+  { to: '/admin/about', label: 'عن المنصة', icon: Info },
 ];
 
 export default function AdminLayout() {
@@ -125,7 +126,7 @@ export default function AdminLayout() {
           >
             <Menu className="h-5 w-5" />
           </button>
-          <h2 className="hidden text-sm font-semibold text-ink-100 sm:block">لوحة إدارة مدينتي</h2>
+          <h2 className="hidden text-sm font-semibold text-ink-100 sm:block">لوحة إدارة طيبة الإمام</h2>
           <span className="rounded-full bg-brand-50 px-3 py-1 text-xs font-bold text-brand-800">
             {profile?.role || 'admin'}
           </span>

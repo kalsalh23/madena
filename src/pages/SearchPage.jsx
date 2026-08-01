@@ -31,7 +31,7 @@ export default function SearchPage() {
       <Container>
         <div className="mb-10 flex flex-col items-center gap-6 text-center">
           <span className="rounded-full bg-gold-500/15 px-4 py-1 text-xs font-bold text-gold-700">بحث شامل</span>
-          <h1 className="font-display text-3xl font-black text-brand-900 sm:text-4xl">البحث في مدينتي</h1>
+          <h1 className="font-display text-3xl font-black text-brand-900 sm:text-4xl">البحث في طيبة الإمام</h1>
           <div className="w-full max-w-xl">
             <SearchBar size="lg" placeholder="ابحث في الأخبار، المشاريع، الأماكن، الفعاليات..." />
           </div>

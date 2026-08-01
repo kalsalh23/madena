@@ -4,7 +4,7 @@
 
 -- ---------- الإعدادات ----------
 insert into public.settings (key, value, type) values
-  ('site_name', 'مدينتي', 'text'),
+  ('site_name', 'طيبة الإمام', 'text'),
   ('site_tagline', 'بوابة المدينة الشاملة', 'text'),
   ('site_description', 'بوابة إلكترونية تقدم كل ما يخص المدينة: الأخبار والمشاريع والأماكن والفعاليات.', 'text'),
   ('hero_image', 'https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?w=1600&q=80', 'image'),
@@ -20,7 +20,12 @@ insert into public.settings (key, value, type) values
   ('map_center_lat', '24.7136', 'text'),
   ('map_center_lng', '46.6753', 'text'),
   ('about_us', 'نحن بوابة إلكترونية موثوقة تقدم كل ما يخص المدينة من معلومات وخدمات.', 'textarea'),
-  ('footer_text', '© 2026 مدينتي — جميع الحقوق محفوظة.', 'text');
+  ('footer_text', '© 2026 طيبة الإمام — جميع الحقوق محفوظة.', 'text'),
+  ('ad_enabled', '0', 'boolean'),
+  ('ad_title', '', 'text'),
+  ('ad_text', '', 'textarea'),
+  ('ad_image', '', 'image'),
+  ('ad_link', '', 'text');
 
 -- ---------- التصنيفات ----------
 insert into public.categories (name, slug, type, icon, color, sort_order) values

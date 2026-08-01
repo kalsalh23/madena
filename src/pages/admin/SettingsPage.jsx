@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Settings as SettingsIcon, Loader2, Save } from 'lucide-react';
 import Button from '@/components/ui/Button';
-import { Field, TextInput, TextArea, ImageUpload } from '@/components/admin/fields';
+import { Field, TextInput, TextArea, ImageUpload, Toggle } from '@/components/admin/fields';
 import { api } from '@/services';
 import { useToast } from '@/contexts/ToastContext';
 import { useSEO } from '@/hooks/useSEO';
@@ -43,6 +43,16 @@ const groups = [
     fields: [
       { key: 'about_us', label: 'نبذة عن الموقع', type: 'textarea' },
       { key: 'footer_text', label: 'نص الفوتر' },
+    ],
+  },
+  {
+    title: 'الإعلان الرئيسي',
+    fields: [
+      { key: 'ad_enabled', label: 'إظهار الإعلان في الصفحة الرئيسية', type: 'toggle' },
+      { key: 'ad_title', label: 'عنوان الإعلان' },
+      { key: 'ad_text', label: 'نص الإعلان', type: 'textarea' },
+      { key: 'ad_image', label: 'صورة الإعلان', type: 'image' },
+      { key: 'ad_link', label: 'رابط الإعلان', hint: 'يُفتح في نافذة جديدة عند الضغط على زر التفاصيل' },
     ],
   },
 ];
@@ -112,6 +122,12 @@ export default function SettingsPage() {
                       <Field label={f.label}>
                         <TextArea value={form[f.key] || ''} onChange={(e) => set(f.key, e.target.value)} />
                       </Field>
+                    ) : f.type === 'toggle' ? (
+                      <div className="sm:col-span-2">
+                        <Field label={f.label}>
+                          <Toggle checked={form[f.key] === '1'} onChange={(v) => set(f.key, v ? '1' : '0')} />
+                        </Field>
+                      </div>
                     ) : (
                       <Field label={f.label}>
                         <TextInput value={form[f.key] || ''} onChange={(e) => set(f.key, e.target.value)} />
