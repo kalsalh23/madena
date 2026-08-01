@@ -84,9 +84,18 @@ npm run dev
 
 ## ☁️ النشر على Vercel
 
-1. ارفع المشروع إلى GitHub.
-2. في Vercel: Import → اختر المشروع → أضف المتغيرات من `.env`.
-3. انشر مباشرة (يوجد `vercel.json` جاهز للـ SPA Rewrites و Cache).
+المشروع مُربوط بمستودع GitHub `kalsalh23/madena` عبر Vercel، ومتغيرات البيئة (`VITE_SUPABASE_URL`، `VITE_SUPABASE_ANON_KEY`) مُضافة في Vercel.
+
+1. **نشر تلقائي (مُوصى به):** `git push` إلى `main` يبني وينشر تلقائياً.
+2. **نشر عبر API (بديل):** إذا لم تستطع الضغط على Git:
+
+   ```powershell
+   $env:VERCEL_TOKEN="vcp_..."           # Vercel → Settings → Tokens
+   $env:VERCEL_PROJECT_ID="prj_..."      # معرف مشروع Vercel
+   node scripts/deploy-vercel.mjs
+   ```
+
+3. `vercel.json` جاهز لـ SPA Rewrites و Cache (يُطبق أثناء البناء على Vercel).
 
 ## 🛠 الأوامر
 
