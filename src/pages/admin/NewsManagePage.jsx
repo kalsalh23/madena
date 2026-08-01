@@ -23,6 +23,7 @@ export default function NewsManagePage() {
     { name: 'video_url', label: 'رابط فيديو (YouTube)', hint: 'اختياري' },
     { name: 'author', label: 'الكاتب' },
     { name: 'published_at', label: 'تاريخ النشر', type: 'datetime' },
+    { name: 'expires_at', label: 'تاريخ الانتهاء', type: 'datetime', hint: 'اختياري — يُحذف الخبر تلقائياً بعد هذا التاريخ' },
     { name: 'is_published', label: 'منشور', type: 'toggle' },
   ];
 

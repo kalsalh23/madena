@@ -4,19 +4,23 @@ import { demoCollections } from '@/lib/demoData';
 /* الحقول المرتبطة بجداول العلاقات */
 const SELECT_MAP = {
   categories: 'id,name,slug,type,icon,color,sort_order,is_published',
-  news: 'id,title,slug,excerpt,content,cover,images,video_url,category_id,author,published_at,is_published,views,categories(name,slug,color,icon)',
-  projects: 'id,name,slug,description,images,agency,start_date,end_date,progress,budget,latitude,longitude,status,is_published,created_at,updated_at',
+  news: 'id,title,slug,excerpt,content,cover,images,video_url,category_id,author,published_at,expires_at,is_published,views,categories(name,slug,color,icon)',
+  projects: 'id,name,slug,description,images,agency,start_date,end_date,progress,budget,latitude,longitude,status,expires_at,is_published,created_at,updated_at',
   project_updates: 'id,project_id,title,body,image,created_at',
-  places: 'id,name,slug,description,images,category_id,phone,website,address,working_hours,latitude,longitude,is_featured,is_published,categories(name,slug,color,icon)',
-  events: 'id,title,slug,description,images,category_id,start_date,end_date,location,latitude,longitude,organizer,is_published,categories(name,slug,color,icon)',
-  gallery: 'id,title,description,image_url,category_id,created_at,categories(name,slug,color,icon)',
-  videos: 'id,title,description,video_url,thumbnail,category_id,duration,is_published,categories(name,slug,color,icon)',
-  statistics: 'id,label,value,icon,sort_order,is_published',
-  pages: 'id,title,slug,content,is_published',
+  places: 'id,name,slug,description,images,category_id,phone,website,address,working_hours,latitude,longitude,expires_at,is_featured,is_published,categories(name,slug,color,icon)',
+  events: 'id,title,slug,description,images,category_id,start_date,end_date,location,latitude,longitude,organizer,expires_at,is_published,categories(name,slug,color,icon)',
+  gallery: 'id,title,description,image_url,category_id,expires_at,created_at,categories(name,slug,color,icon)',
+  videos: 'id,title,description,video_url,thumbnail,category_id,duration,expires_at,is_published,categories(name,slug,color,icon)',
+  statistics: 'id,label,value,icon,expires_at,sort_order,is_published',
+  pages: 'id,title,slug,content,expires_at,is_published',
   partners: 'id,name,logo,website,sort_order,is_published',
   settings: 'id,key,value,type',
   city_overview_stats: '*',
 };
+
+const isExpired = (row) => row?.expires_at && new Date(row.expires_at).getTime() <= Date.now();
+const filterExpired = (rows, includeExpired) =>
+  includeExpired ? rows : (rows || []).filter((r) => !isExpired(r));
 
 const normalize = (table, rows) => {
   if (!rows) return rows;
@@ -96,13 +100,14 @@ export const api = {
   async list(table, options = {}) {
     if (isDemoMode) {
       await sleep(350);
-      return demoList(table, options);
+      const { data, count } = demoList(table, options);
+      return { data: filterExpired(data, options.includeExpired), count };
     }
     const { page, perPage, ...rest } = options;
     const range = page && perPage ? { from: (page - 1) * perPage, to: page * perPage - 1 } : undefined;
     const { data, error, count } = await buildQuery(table, { ...rest, range }).returns();
     if (error) throw error;
-    return { data: normalize(table, data), count };
+    return { data: filterExpired(normalize(table, data), options.includeExpired), count };
   },
 
   async get(table, query = {}) {
@@ -116,7 +121,9 @@ export const api = {
     });
     const { data, error } = await q;
     if (error) throw error;
-    return { data: normalize(table, data) };
+    const normalized = normalize(table, data);
+    if (normalized && isExpired(normalized) && !query.includeExpired) return { data: null };
+    return { data: normalized };
   },
 
   async getById(table, id) {

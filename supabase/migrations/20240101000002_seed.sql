@@ -25,7 +25,8 @@ insert into public.settings (key, value, type) values
   ('ad_title', '', 'text'),
   ('ad_text', '', 'textarea'),
   ('ad_image', '', 'image'),
-  ('ad_link', '', 'text');
+  ('ad_link', '', 'text'),
+  ('ad_expires_at', '', 'datetime');
 
 -- ---------- التصنيفات ----------
 insert into public.categories (name, slug, type, icon, color, sort_order) values

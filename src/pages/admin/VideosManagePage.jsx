@@ -16,6 +16,7 @@ export default function VideosManagePage() {
     { name: 'thumbnail', label: 'صورة مصغرة', type: 'image', aspect: 'video' },
     { name: 'category_id', label: 'التصنيف', type: 'select', options: (categories || []).map((c) => ({ value: c.id, label: c.name })) },
     { name: 'duration', label: 'المدة (ثانية)', type: 'number', min: 0 },
+    { name: 'expires_at', label: 'تاريخ الانتهاء', type: 'datetime', hint: 'اختياري — يُحذف الفيديو تلقائياً بعد هذا التاريخ' },
     { name: 'is_published', label: 'منشور', type: 'toggle' },
   ];
 

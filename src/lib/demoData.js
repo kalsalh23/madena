@@ -191,6 +191,7 @@ export const demoSettings = {
   ad_text: 'تعرف على خطة تحديث شبكة النقل العام في طيبة الإمام وخدماتها الجديدة لسكان المدينة وزوارها.',
   ad_image: 'https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=1200&q=80',
   ad_link: 'https://example.com',
+  ad_expires_at: '',
 };
 
 export const demoOverviews = {

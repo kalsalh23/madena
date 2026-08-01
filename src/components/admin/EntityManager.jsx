@@ -13,7 +13,7 @@ import {
 } from './fields';
 import { generateSlug } from '@/lib/utils';
 import { isDemoMode } from '@/services';
-import { toLocalInputValue } from '@/lib/utils';
+import { toLocalInputValue, formatDate } from '@/lib/utils';
 
 export default function EntityManager({
   title,
@@ -39,7 +39,7 @@ export default function EntityManager({
 
   const { data, isLoading } = useQuery({
     queryKey: [...key, debounced],
-    queryFn: () => api.list(entity, { search: debounced, searchFields, order: 'created_at', perPage: 500, page: 1 }).then((r) => r.data),
+    queryFn: () => api.list(entity, { search: debounced, searchFields, order: 'created_at', perPage: 500, page: 1, includeExpired: true }).then((r) => r.data),
   });
 
   const createMutation = useMutation({
@@ -103,6 +103,9 @@ export default function EntityManager({
     setSaving(true);
     try {
       const payload = transform(form);
+      if (payload.expires_at !== undefined) {
+        payload.expires_at = payload.expires_at ? new Date(payload.expires_at).toISOString() : null;
+      }
       if (modal.mode === 'create') {
         await createMutation.mutateAsync(payload);
       } else {
@@ -149,6 +152,20 @@ export default function EntityManager({
   };
 
   const hasPublish = fields.some((f) => f.name === 'is_published');
+  const hasExpiry = fields.some((f) => f.name === 'expires_at');
+
+  const expiryBadge = (item) => {
+    if (!item.expires_at) {
+      return <span className="rounded-full bg-gray-100 px-2.5 py-1 text-[11px] font-bold text-gray-500">دائم</span>;
+    }
+    const expired = new Date(item.expires_at).getTime() <= Date.now();
+    return (
+      <span className={`rounded-full px-2.5 py-1 text-[11px] font-bold ${expired ? 'bg-wine-50 text-wine-700' : 'bg-emerald-50 text-emerald-600'}`}>
+        {expired ? 'منتهي · ' : ''}
+        {formatDate(item.expires_at)}
+      </span>
+    );
+  };
 
   return (
     <div>
@@ -203,6 +220,7 @@ export default function EntityManager({
                   </th>
                 ))}
                 {hasPublish && <th className="px-5 py-3.5 font-bold">النشر</th>}
+                {hasExpiry && <th className="px-5 py-3.5 font-bold">الانتهاء</th>}
                 <th className="px-5 py-3.5 font-bold">إجراءات</th>
               </tr>
             </thead>
@@ -229,6 +247,7 @@ export default function EntityManager({
                       </button>
                     </td>
                   )}
+                  {hasExpiry && <td className="px-5 py-4">{expiryBadge(item)}</td>}
                   <td className="px-5 py-4">
                     <div className="flex items-center gap-2">
                       <button

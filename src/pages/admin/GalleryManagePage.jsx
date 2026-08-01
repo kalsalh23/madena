@@ -14,6 +14,7 @@ export default function GalleryManagePage() {
     { name: 'title', label: 'العنوان' },
     { name: 'description', label: 'الوصف', type: 'textarea', rows: 2 },
     { name: 'category_id', label: 'التصنيف', type: 'select', options: (categories || []).map((c) => ({ value: c.id, label: c.name })) },
+    { name: 'expires_at', label: 'تاريخ الانتهاء', type: 'datetime', hint: 'اختياري — تُحذف الصورة تلقائياً بعد هذا التاريخ' },
   ];
 
   const columns = [

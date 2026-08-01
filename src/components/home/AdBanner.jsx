@@ -6,8 +6,9 @@ import { useSettings } from '@/contexts/SettingsContext';
 export default function AdBanner() {
   const { settings } = useSettings();
   const enabled = settings.ad_enabled === '1';
+  const expired = Boolean(settings.ad_expires_at && new Date(settings.ad_expires_at).getTime() <= Date.now());
   const hasContent = Boolean(settings.ad_title || settings.ad_text || settings.ad_image);
-  if (!enabled || !hasContent) return null;
+  if (!enabled || expired || !hasContent) return null;
 
   return (
     <section className="py-10">

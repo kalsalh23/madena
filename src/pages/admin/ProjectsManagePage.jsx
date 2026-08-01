@@ -39,6 +39,7 @@ export default function ProjectsManagePage() {
     { name: 'status', label: 'الحالة', type: 'select', options: statusOptions },
     { name: 'latitude', label: 'خط العرض', type: 'number' },
     { name: 'longitude', label: 'خط الطول', type: 'number' },
+    { name: 'expires_at', label: 'تاريخ الانتهاء', type: 'datetime', hint: 'اختياري — يُحذف المشروع تلقائياً بعد هذا التاريخ' },
     { name: 'is_published', label: 'منشور', type: 'toggle' },
   ];
 

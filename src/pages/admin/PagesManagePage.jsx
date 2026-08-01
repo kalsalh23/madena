@@ -11,6 +11,7 @@ export default function PagesManagePage() {
     { name: 'title', label: 'العنوان', required: true },
     { name: 'slug', label: 'الرابط', hint: 'مثال: about, contact' },
     { name: 'content', label: 'المحتوى', type: 'richtext' },
+    { name: 'expires_at', label: 'تاريخ الانتهاء', type: 'datetime', hint: 'اختياري — تُحذف الصفحة تلقائياً بعد هذا التاريخ' },
     { name: 'is_published', label: 'منشور', type: 'toggle' },
   ];
 

@@ -21,6 +21,7 @@ export default function PlacesManagePage() {
     { name: 'working_hours', label: 'ساعات العمل' },
     { name: 'latitude', label: 'خط العرض', type: 'number' },
     { name: 'longitude', label: 'خط الطول', type: 'number' },
+    { name: 'expires_at', label: 'تاريخ الانتهاء', type: 'datetime', hint: 'اختياري — يُحذف المكان تلقائياً بعد هذا التاريخ' },
     { name: 'is_featured', label: 'مميز', type: 'toggle' },
     { name: 'is_published', label: 'منشور', type: 'toggle' },
   ];

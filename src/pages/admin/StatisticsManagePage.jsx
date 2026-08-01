@@ -18,6 +18,7 @@ export default function StatisticsManagePage() {
     { name: 'value', label: 'القيمة', type: 'number', required: true },
     { name: 'icon', label: 'الأيقونة', type: 'select', options: iconOptions },
     { name: 'sort_order', label: 'الترتيب', type: 'number' },
+    { name: 'expires_at', label: 'تاريخ الانتهاء', type: 'datetime', hint: 'اختياري — تُحذف الإحصائية تلقائياً بعد هذا التاريخ' },
     { name: 'is_published', label: 'منشور', type: 'toggle' },
   ];
 
