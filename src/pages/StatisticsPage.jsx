@@ -1,17 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import {
-  BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid,
-  PieChart, Pie, Cell, Legend,
-} from 'recharts';
+import { Headset, Mail, MapPin, Phone, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Container from '@/components/ui/Container';
-import SectionHeading from '@/components/ui/SectionHeading';
 import { api } from '@/services';
 import { useCountUp, useDocumentTitle } from '@/hooks';
 import { formatNumber } from '@/lib/utils';
 import { resolveIcon } from '@/lib/iconMap';
-
-const COLORS = ['#054239', '#b9a779', '#6b1f2a', '#0e7a63', '#988561', '#002623', '#4a151e'];
+import { useSettings } from '@/contexts/SettingsContext';
 
 function StatCard({ stat, index }) {
   const Icon = resolveIcon(stat.icon);
@@ -33,6 +28,18 @@ function StatCard({ stat, index }) {
   );
 }
 
+function SupportRow({ icon: Icon, label, children }) {
+  return (
+    <li className="flex items-center justify-between gap-4 px-6 py-4">
+      <span className="flex items-center gap-3 text-ink-100">
+        <Icon className="h-5 w-5 text-brand-700" />
+        {label}
+      </span>
+      <span className="font-bold text-brand-900">{children}</span>
+    </li>
+  );
+}
+
 export default function StatisticsPage() {
   useDocumentTitle('الإحصائيات');
 
@@ -41,18 +48,7 @@ export default function StatisticsPage() {
     queryFn: () => api.list('statistics', { order: 'sort_order', orderAsc: true }).then((r) => r.data),
   });
 
-  const { data: places } = useQuery({
-    queryKey: ['stats-places'],
-    queryFn: () => api.list('places', { perPage: 500, page: 1 }).then((r) => r.data),
-  });
-
-  const byCategory = Object.entries(
-    (places || []).reduce((acc, p) => {
-      const key = p.category?.name || 'أخرى';
-      acc[key] = (acc[key] || 0) + 1;
-      return acc;
-    }, {})
-  ).map(([name, value]) => ({ name, value }));
+  const { settings } = useSettings();
 
   return (
     <div className="pt-28 pb-16">
@@ -69,49 +65,46 @@ export default function StatisticsPage() {
           ))}
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-2">
-          <div className="card-surface p-6">
-            <h2 className="mb-6 text-lg font-bold text-ink-900">مؤشرات رئيسية</h2>
-            <ResponsiveContainer width="100%" height={320}>
-              <BarChart data={stats || []} margin={{ top: 10, right: 10, left: 10, bottom: 40 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
-                <XAxis dataKey="label" tick={{ fontSize: 12 }} interval={0} angle={-30} textAnchor="end" />
-                <YAxis tick={{ fontSize: 12 }} />
-                <Tooltip />
-                <Bar dataKey="value" name="القيمة" radius={[8, 8, 0, 0]}>
-                  {(stats || []).map((_, i) => (
-                    <Cell key={i} fill={COLORS[i % COLORS.length]} />
-                  ))}
-                </Bar>
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.15 }}
+          className="mx-auto mt-14 max-w-2xl"
+        >
+          <div className="card-surface overflow-hidden">
+            <div className="flex flex-col items-center gap-4 border-b border-ink-100/10 bg-brand-900 px-6 py-8 text-center sm:flex-row sm:text-right">
+              <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gold-500/15 text-gold-400">
+                <Headset className="h-8 w-8" />
+              </span>
+              <div>
+                <h2 className="font-display text-xl font-black text-cream">الدعم والاتصال</h2>
+                <p className="mt-1 text-sm text-cream/75">فريقنا جاهز لخدمتك للإجابة عن استفساراتك وملاحظاتك.</p>
+              </div>
+            </div>
 
-          <div className="card-surface p-6">
-            <h2 className="mb-6 text-lg font-bold text-ink-900">توزيع الأماكن حسب التصنيف</h2>
-            <ResponsiveContainer width="100%" height={320}>
-              <PieChart>
-                <Pie
-                  data={byCategory}
-                  dataKey="value"
-                  nameKey="name"
-                  cx="50%"
-                  cy="50%"
-                  outerRadius={110}
-                  innerRadius={55}
-                  paddingAngle={3}
-                  label={({ name }) => name}
-                >
-                  {byCategory.map((_, i) => (
-                    <Cell key={i} fill={COLORS[i % COLORS.length]} />
-                  ))}
-                </Pie>
-                <Tooltip />
-                <Legend />
-              </PieChart>
-            </ResponsiveContainer>
+            <ul className="divide-y divide-ink-100/10">
+              {settings.contact_phone && (
+                <SupportRow icon={Phone} label="رقم الدعم">
+                  <a href={`tel:${settings.contact_phone}`} dir="ltr" className="hover:text-brand-700">{settings.contact_phone}</a>
+                </SupportRow>
+              )}
+              {settings.contact_email && (
+                <SupportRow icon={Mail} label="البريد الإلكتروني">
+                  <a href={`mailto:${settings.contact_email}`} className="hover:text-brand-700">{settings.contact_email}</a>
+                </SupportRow>
+              )}
+              {settings.contact_address && (
+                <SupportRow icon={MapPin} label="العنوان">
+                  <span className="font-semibold text-ink-900">{settings.contact_address}</span>
+                </SupportRow>
+              )}
+              <SupportRow icon={Clock} label="أوقات العمل">
+                <span className="font-semibold text-ink-900">على مدار الساعة، طوال أيام الأسبوع</span>
+              </SupportRow>
+            </ul>
           </div>
-        </div>
+        </motion.div>
       </Container>
     </div>
   );
