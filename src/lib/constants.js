@@ -39,6 +39,6 @@ export const ENTITY_LABELS = {
 };
 
 export const DEFAULT_MAP_CENTER = {
-  lat: Number(import.meta.env.VITE_MAP_CENTER_LAT) || 24.7136,
-  lng: Number(import.meta.env.VITE_MAP_CENTER_LNG) || 46.6753,
+  lat: Number(import.meta.env.VITE_MAP_CENTER_LAT) || 35.26389,
+  lng: Number(import.meta.env.VITE_MAP_CENTER_LNG) || 36.70667,
 };

@@ -49,7 +49,7 @@ export default function MapSection() {
           <div className="relative">
             <MapView
               markers={markers}
-              center={[Number(settings.map_center_lat) || 24.7136, Number(settings.map_center_lng) || 46.6753]}
+              center={[Number(settings.map_center_lat) || 35.26389, Number(settings.map_center_lng) || 36.70667]}
               height={460}
               scrollWheelZoom
             />

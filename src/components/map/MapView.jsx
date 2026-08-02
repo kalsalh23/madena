@@ -32,7 +32,7 @@ function AutoFit({ markers }) {
 
 export default function MapView({
   markers = [],
-  center = [24.7136, 46.6753],
+  center = [35.26389, 36.70667],
   zoom = 13,
   height = 460,
   fitBounds = false,
