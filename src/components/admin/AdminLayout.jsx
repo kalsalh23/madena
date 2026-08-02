@@ -3,7 +3,7 @@ import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   LayoutDashboard, Newspaper, Building2, Map, Image as ImageIcon, Play,
-  CalendarDays, BarChart3, FileText, Handshake, Settings as SettingsIcon,
+  CalendarDays, BarChart3, FileText, Handshake, Megaphone, Settings as SettingsIcon,
   LogOut, Menu, X, ExternalLink, Info,
 } from 'lucide-react';
 import Logo from '@/components/layout/Logo';
@@ -21,6 +21,7 @@ const nav = [
   { to: '/admin/statistics', label: 'الإحصائيات', icon: BarChart3 },
   { to: '/admin/pages', label: 'الصفحات', icon: FileText },
   { to: '/admin/partners', label: 'الشركاء', icon: Handshake },
+  { to: '/admin/ads', label: 'الإعلانات', icon: Megaphone },
   { to: '/admin/settings', label: 'إعدادات الموقع', icon: SettingsIcon },
   { to: '/admin/about', label: 'عن المنصة', icon: Info },
 ];

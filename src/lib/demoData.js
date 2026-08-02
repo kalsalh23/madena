@@ -186,12 +186,6 @@ export const demoSettings = {
   map_center_lng: '46.6753',
   about_us: 'نحن بوابة إلكترونية موثوقة تقدم كل ما يخص المدينة من معلومات وخدمات.',
   footer_text: '© 2026 طيبة الإمام — جميع الحقوق محفوظة.',
-  ad_enabled: '1',
-  ad_title: 'انطلاقة مشروع النقل الذكي الجديد',
-  ad_text: 'تعرف على خطة تحديث شبكة النقل العام في طيبة الإمام وخدماتها الجديدة لسكان المدينة وزوارها.',
-  ad_image: 'https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=1200&q=80',
-  ad_link: 'https://example.com',
-  ad_expires_at: '',
 };
 
 export const demoOverviews = {
@@ -203,6 +197,11 @@ export const demoOverviews = {
   videos_count: demoVideos.length,
   partners_count: demoPartners.length,
 };
+
+export const demoAds = [
+  { id: 'ad-1', title: 'انطلاقة مشروع النقل الذكي الجديد', body: 'تعرف على خطة تحديث شبكة النقل العام في طيبة الإمام وخدماتها الجديدة لسكان المدينة وزوارها.', image: 'https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=1200&q=80', link: 'https://example.com', sort_order: 1, is_published: true },
+  { id: 'ad-2', title: 'مهرجان طيبة للإبداع الشبابي', body: 'فعاليات وأنشطة ثقافية وفنية تستضيفها المدينة طوال الموسم القادم.', image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80', link: null, sort_order: 2, is_published: true },
+];
 
 export const demoCollections = {
   categories: demoCategories,
@@ -216,6 +215,7 @@ export const demoCollections = {
   statistics: demoStatistics,
   pages: demoPages,
   partners: demoPartners,
+  ads: demoAds,
   settings: demoSettings,
   city_overview_stats: demoOverviews,
 };

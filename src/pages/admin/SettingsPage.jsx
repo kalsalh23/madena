@@ -6,7 +6,6 @@ import { Field, TextInput, TextArea, ImageUpload, Toggle } from '@/components/ad
 import { api } from '@/services';
 import { useToast } from '@/contexts/ToastContext';
 import { useSEO } from '@/hooks/useSEO';
-import { toLocalInputValue } from '@/lib/utils';
 
 const groups = [
   {
@@ -46,17 +45,6 @@ const groups = [
       { key: 'footer_text', label: 'نص الفوتر' },
     ],
   },
-  {
-    title: 'الإعلان الرئيسي',
-    fields: [
-      { key: 'ad_enabled', label: 'إظهار الإعلان في الصفحة الرئيسية', type: 'toggle' },
-      { key: 'ad_title', label: 'عنوان الإعلان' },
-      { key: 'ad_text', label: 'نص الإعلان', type: 'textarea' },
-      { key: 'ad_image', label: 'صورة الإعلان', type: 'image' },
-      { key: 'ad_link', label: 'رابط الإعلان', hint: 'يُفتح في نافذة جديدة عند الضغط على زر التفاصيل' },
-      { key: 'ad_expires_at', label: 'تاريخ انتهاء الإعلان', type: 'datetime', hint: 'اختياري — يُخفي الإعلان ويُمسح تلقائياً بعد هذا التاريخ' },
-    ],
-  },
 ];
 
 export default function SettingsPage() {
@@ -75,12 +63,7 @@ export default function SettingsPage() {
   }, [data]);
 
   const mutation = useMutation({
-    mutationFn: () => {
-      const payload = { ...form };
-      if (payload.ad_expires_at) payload.ad_expires_at = new Date(payload.ad_expires_at).toISOString();
-      else payload.ad_expires_at = '';
-      return api.saveSettings(payload);
-    },
+    mutationFn: () => api.saveSettings(form),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['settings'] });
       toast('تم حفظ الإعدادات بنجاح');
@@ -135,14 +118,6 @@ export default function SettingsPage() {
                           <Toggle checked={form[f.key] === '1'} onChange={(v) => set(f.key, v ? '1' : '0')} />
                         </Field>
                       </div>
-                    ) : f.type === 'datetime' ? (
-                      <Field label={f.label} hint={f.hint}>
-                        <TextInput
-                          type="datetime-local"
-                          value={form[f.key] ? toLocalInputValue(form[f.key]) : ''}
-                          onChange={(e) => set(f.key, e.target.value)}
-                        />
-                      </Field>
                     ) : (
                       <Field label={f.label}>
                         <TextInput value={form[f.key] || ''} onChange={(e) => set(f.key, e.target.value)} />

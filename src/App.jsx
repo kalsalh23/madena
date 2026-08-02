@@ -34,6 +34,7 @@ const StatisticsManagePage = lazy(() => import('@/pages/admin/StatisticsManagePa
 const CategoriesManagePage = lazy(() => import('@/pages/admin/CategoriesManagePage'));
 const PagesManagePage = lazy(() => import('@/pages/admin/PagesManagePage'));
 const PartnersManagePage = lazy(() => import('@/pages/admin/PartnersManagePage'));
+const AdsManagePage = lazy(() => import('@/pages/admin/AdsManagePage'));
 const SettingsPage = lazy(() => import('@/pages/admin/SettingsPage'));
 const AboutPlatformPage = lazy(() => import('@/pages/admin/AboutPlatformPage'));
 
@@ -90,6 +91,7 @@ export default function App() {
         <Route path="categories" element={withSuspense(<CategoriesManagePage />)} />
         <Route path="pages" element={withSuspense(<PagesManagePage />)} />
         <Route path="partners" element={withSuspense(<PartnersManagePage />)} />
+        <Route path="ads" element={withSuspense(<AdsManagePage />)} />
         <Route path="settings" element={withSuspense(<SettingsPage />)} />
         <Route path="about" element={withSuspense(<AboutPlatformPage />)} />
       </Route>

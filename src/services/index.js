@@ -14,6 +14,7 @@ const SELECT_MAP = {
   statistics: 'id,label,value,icon,expires_at,sort_order,is_published',
   pages: 'id,title,slug,content,expires_at,is_published',
   partners: 'id,name,logo,website,sort_order,is_published',
+  ads: 'id,title,body,image,link,sort_order,is_published,expires_at,created_at',
   settings: 'id,key,value,type',
   city_overview_stats: '*',
 };

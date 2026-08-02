@@ -2,6 +2,7 @@ export const SITE = {
   name: 'طيبة الإمام',
   tagline: 'بوابة المدينة الشاملة',
   description: 'بوابة إلكترونية شاملة لمدينتك: آخر الأخبار، المشاريع، دليل الأماكن، الفعاليات، الخرائط والإحصائيات.',
+  logo: '/logo.jpg',
 };
 
 export const PLACEHOLDER_IMAGE = 'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1200&q=80';

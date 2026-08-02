@@ -5,10 +5,8 @@ import { SITE } from '@/lib/constants';
 export default function Logo({ className, dark = false, to = '/' }) {
   return (
     <Link to={to} className={cn('flex items-center gap-2.5', className)}>
-      <span className="flex h-10 w-10 items-center justify-center rounded-xl2 bg-gradient-to-br from-gold-500 to-brand-800 shadow-lift">
-        <svg viewBox="0 0 24 24" className="h-6 w-6 text-cream" fill="currentColor" aria-hidden>
-          <path d="M3 21h18v-2H3zM6 18h2V9H6zM11 18h2V6h-2zM16 18h2V11h-2z" />
-        </svg>
+      <span className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-xl2 bg-white shadow-lift ring-1 ring-black/5">
+        <img src={SITE.logo} alt={SITE.name} className="h-full w-full object-cover" />
       </span>
       <span className="flex flex-col leading-tight">
         <span className={cn('font-display text-lg font-extrabold', dark ? 'text-cream' : 'text-brand-900')}>

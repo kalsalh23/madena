@@ -20,13 +20,7 @@ insert into public.settings (key, value, type) values
   ('map_center_lat', '24.7136', 'text'),
   ('map_center_lng', '46.6753', 'text'),
   ('about_us', 'نحن بوابة إلكترونية موثوقة تقدم كل ما يخص المدينة من معلومات وخدمات.', 'textarea'),
-  ('footer_text', '© 2026 طيبة الإمام — جميع الحقوق محفوظة.', 'text'),
-  ('ad_enabled', '0', 'boolean'),
-  ('ad_title', '', 'text'),
-  ('ad_text', '', 'textarea'),
-  ('ad_image', '', 'image'),
-  ('ad_link', '', 'text'),
-  ('ad_expires_at', '', 'datetime');
+  ('footer_text', '© 2026 طيبة الإمام — جميع الحقوق محفوظة.', 'text');
 
 -- ---------- التصنيفات ----------
 insert into public.categories (name, slug, type, icon, color, sort_order) values
