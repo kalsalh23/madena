@@ -10,7 +10,7 @@ export const demoCategories = [
   { id: 'c-places-restaurants', name: 'المطاعم', slug: 'restaurants', type: 'places', icon: 'Utensils', color: '#988561', sort_order: 4 },
   { id: 'c-places-parks', name: 'الحدائق', slug: 'parks', type: 'places', icon: 'Trees', color: '#0e7a63', sort_order: 5 },
   { id: 'c-places-mosques', name: 'المساجد', slug: 'mosques', type: 'places', icon: 'Moon', color: '#054239', sort_order: 6 },
-  { id: 'c-places-churches', name: 'الكنائس', slug: 'churches', type: 'places', icon: 'Church', color: '#6b1f2a', sort_order: 7 },
+  { id: 'c-places-gas', name: 'مراكز الغاز', slug: 'gas-centers', type: 'places', icon: 'Fuel', color: '#054239', sort_order: 7 },
   { id: 'c-places-government', name: 'الدوائر الحكومية', slug: 'government', type: 'places', icon: 'Landmark', color: '#054239', sort_order: 8 },
   { id: 'c-places-hotels', name: 'الفنادق', slug: 'hotels', type: 'places', icon: 'Hotel', color: '#988561', sort_order: 9 },
   { id: 'c-places-markets', name: 'الأسواق', slug: 'markets', type: 'places', icon: 'ShoppingBag', color: '#6b1f2a', sort_order: 10 },
@@ -148,12 +148,12 @@ export const demoVideos = [
 
 export const demoStatistics = [
   { id: 's-1', label: 'عدد السكان', value: 850000, icon: 'Users', sort_order: 1, is_published: true },
-  { id: 's-2', label: 'المدارس', value: 320, icon: 'GraduationCap', sort_order: 2, is_published: true },
-  { id: 's-3', label: 'المشافي', value: 42, icon: 'Cross', sort_order: 3, is_published: true },
-  { id: 's-4', label: 'الحدائق', value: 78, icon: 'Trees', sort_order: 4, is_published: true },
-  { id: 's-5', label: 'المشاريع الجارية', value: 15, icon: 'Building2', sort_order: 5, is_published: true },
-  { id: 's-6', label: 'الأحياء', value: 46, icon: 'Home', sort_order: 6, is_published: true },
-  { id: 's-7', label: 'المؤسسات', value: 2100, icon: 'Landmark', sort_order: 7, is_published: true },
+  { id: 's-2', label: 'المدارس', value: 320, icon: 'GraduationCap', link: '/places?cat=schools', sort_order: 2, is_published: true },
+  { id: 's-3', label: 'المشافي', value: 42, icon: 'Cross', link: '/places?cat=hospitals', sort_order: 3, is_published: true },
+  { id: 's-4', label: 'الحدائق', value: 78, icon: 'Trees', link: '/places?cat=parks', sort_order: 4, is_published: true },
+  { id: 's-5', label: 'المشاريع الجارية', value: 15, icon: 'Building2', link: '/projects?status=ongoing', sort_order: 5, is_published: true },
+  { id: 's-6', label: 'الأحياء', value: 46, icon: 'Home', link: '/map', sort_order: 6, is_published: true },
+  { id: 's-7', label: 'المؤسسات', value: 2100, icon: 'Landmark', link: '/places?cat=government', sort_order: 7, is_published: true },
 ];
 
 export const demoPartners = [

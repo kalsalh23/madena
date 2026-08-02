@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import Container from '@/components/ui/Container';
 import { SkeletonList } from '@/components/ui/Skeleton';
@@ -17,7 +17,10 @@ const statuses = [
 
 export default function ProjectsPage() {
   useDocumentTitle('المشاريع');
-  const [status, setStatus] = useState('all');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const status = statuses.some((s) => s.value === (searchParams.get('status') || 'all'))
+    ? searchParams.get('status')
+    : 'all';
 
   const { data, isLoading } = useQuery({
     queryKey: ['projects', status],
@@ -31,6 +34,10 @@ export default function ProjectsPage() {
   });
 
   const ongoingCount = (data || []).filter((p) => p.status === 'ongoing').length;
+
+  const selectStatus = (value) => {
+    setSearchParams(value === 'all' ? {} : { status: value });
+  };
 
   return (
     <div className="pt-28 pb-16">
@@ -48,7 +55,7 @@ export default function ProjectsPage() {
           {statuses.map((s) => (
             <button
               key={s.value}
-              onClick={() => setStatus(s.value)}
+              onClick={() => selectStatus(s.value)}
               className={cn(
                 'rounded-full px-4 py-2 text-sm font-semibold transition-colors',
                 status === s.value ? 'bg-brand-800 text-cream shadow-lift' : 'bg-white text-ink-100 hover:bg-brand-50'

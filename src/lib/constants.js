@@ -14,7 +14,7 @@ export const PLACE_TYPE_LABELS = {
   restaurants: 'المطاعم',
   parks: 'الحدائق',
   mosques: 'المساجد',
-  churches: 'الكنائس',
+  gas_centers: 'مراكز الغاز',
   government: 'الدوائر الحكومية',
   hotels: 'الفنادق',
   markets: 'الأسواق',

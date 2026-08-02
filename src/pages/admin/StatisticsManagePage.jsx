@@ -17,6 +17,7 @@ export default function StatisticsManagePage() {
     { name: 'label', label: 'التسمية', required: true },
     { name: 'value', label: 'القيمة', type: 'number', required: true },
     { name: 'icon', label: 'الأيقونة', type: 'select', options: iconOptions },
+    { name: 'link', label: 'رابط الوجهة', hint: 'مثال: /places?cat=schools — يُفتح عند النقر على البطاقة' },
     { name: 'sort_order', label: 'الترتيب', type: 'number' },
     { name: 'expires_at', label: 'تاريخ الانتهاء', type: 'datetime', hint: 'اختياري — تُحذف الإحصائية تلقائياً بعد هذا التاريخ' },
     { name: 'is_published', label: 'منشور', type: 'toggle' },
@@ -37,6 +38,7 @@ export default function StatisticsManagePage() {
     },
     { key: 'label', label: 'التسمية', render: (item) => <span className="font-semibold text-ink-900">{item.label}</span> },
     { key: 'value', label: 'القيمة', render: (item) => <span className="font-display font-bold text-brand-800">{formatNumber(item.value)}</span> },
+    { key: 'link', label: 'الوجهة', render: (item) => (item.link ? <span dir="ltr" className="text-xs text-brand-700">{item.link}</span> : '—') },
     { key: 'sort_order', label: 'الترتيب', render: (item) => <span className="text-xs">{item.sort_order}</span> },
   ];
 

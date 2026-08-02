@@ -165,6 +165,7 @@ create table if not exists public.statistics (
   label text not null,
   value int not null default 0,
   icon text default '',
+  link text,
   sort_order int not null default 0,
   is_published boolean not null default true,
   created_at timestamptz not null default now()

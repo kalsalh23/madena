@@ -30,7 +30,7 @@ insert into public.categories (name, slug, type, icon, color, sort_order) values
   ('المطاعم', 'restaurants', 'places', 'Utensils', '#988561', 4),
   ('الحدائق', 'parks', 'places', 'Trees', '#0e7a63', 5),
   ('المساجد', 'mosques', 'places', 'Moon', '#054239', 6),
-  ('الكنائس', 'churches', 'places', 'Church', '#6b1f2a', 7),
+  ('مراكز الغاز', 'gas-centers', 'places', 'Fuel', '#054239', 7),
   ('الدوائر الحكومية', 'government', 'places', 'Landmark', '#054239', 8),
   ('الفنادق', 'hotels', 'places', 'Hotel', '#988561', 9),
   ('الأسواق', 'markets', 'places', 'ShoppingBag', '#6b1f2a', 10),
@@ -202,14 +202,14 @@ insert into public.videos (title, description, video_url, thumbnail, category_id
    (select id from public.categories where slug='city-videos'), 150);
 
 -- ---------- الإحصائيات ----------
-insert into public.statistics (label, value, icon, sort_order) values
-  ('عدد السكان', 850000, 'Users', 1),
-  ('المدارس', 320, 'GraduationCap', 2),
-  ('المشافي', 42, 'Cross', 3),
-  ('الحدائق', 78, 'Trees', 4),
-  ('المشاريع الجارية', 15, 'Building2', 5),
-  ('الأحياء', 46, 'Home', 6),
-  ('المؤسسات', 2100, 'Landmark', 7);
+insert into public.statistics (label, value, icon, link, sort_order) values
+  ('عدد السكان', 850000, 'Users', null, 1),
+  ('المدارس', 320, 'GraduationCap', '/places?cat=schools', 2),
+  ('المشافي', 42, 'Cross', '/places?cat=hospitals', 3),
+  ('الحدائق', 78, 'Trees', '/places?cat=parks', 4),
+  ('المشاريع الجارية', 15, 'Building2', '/projects?status=ongoing', 5),
+  ('الأحياء', 46, 'Home', '/map', 6),
+  ('المؤسسات', 2100, 'Landmark', '/places?cat=government', 7);
 
 -- ---------- الشركاء ----------
 insert into public.partners (name, logo, website, sort_order) values

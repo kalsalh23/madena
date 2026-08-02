@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import Container from '@/components/ui/Container';
 import SearchBar from '@/components/ui/SearchBar';
@@ -12,7 +13,8 @@ import { cn } from '@/lib/utils';
 
 export default function PlacesPage() {
   useDocumentTitle('دليل المدينة');
-  const [category, setCategory] = useState('all');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const catSlug = searchParams.get('cat') || 'all';
   const [search, setSearch] = useState('');
   const debounced = useDebounce(search, 400);
 
@@ -21,11 +23,15 @@ export default function PlacesPage() {
     queryFn: () => api.list('categories', { filters: { type: 'places' }, order: 'sort_order', orderAsc: true }).then((r) => r.data),
   });
 
+  const activeCat = (categories || []).find((c) => c.slug === catSlug);
+  const categoryId = activeCat ? activeCat.id : undefined;
+
   const { data, isLoading } = useQuery({
-    queryKey: ['places', category, debounced],
+    queryKey: ['places', catSlug, debounced],
+    enabled: catSlug === 'all' || Boolean(activeCat),
     queryFn: () =>
       api.list('places', {
-        filters: category !== 'all' ? { category_id: category } : {},
+        filters: catSlug !== 'all' && categoryId ? { category_id: categoryId } : {},
         search: debounced,
         searchFields: ['name', 'description', 'address'],
         order: 'is_featured',
@@ -34,6 +40,10 @@ export default function PlacesPage() {
       }).then((r) => r.data),
   });
 
+  const selectCategory = (slug) => {
+    setSearchParams(slug === 'all' ? {} : { cat: slug });
+  };
+
   return (
     <div className="pt-28 pb-16">
       <Container>
@@ -41,7 +51,7 @@ export default function PlacesPage() {
           <span className="rounded-full bg-gold-500/15 px-4 py-1 text-xs font-bold text-gold-700">دليل المدينة</span>
           <h1 className="font-display text-3xl font-black text-brand-900 sm:text-4xl">دليل الأماكن والخدمات</h1>
           <p className="max-w-xl text-ink-100">
-            ابحث عن المدارس، المشافي، المطاعم، الحدائق وكل ما تحتاجه في مدينتك.
+            ابحث عن المدارس، المشافي، المطاعم، الحدائق، مراكز الغاز وكل ما تحتاجه في مدينتك.
           </p>
           <div className="w-full max-w-md">
             <SearchBar size="sm" placeholder="ابحث عن مكان..." />
@@ -50,10 +60,10 @@ export default function PlacesPage() {
 
         <div className="mb-8 flex flex-wrap justify-center gap-2">
           <button
-            onClick={() => setCategory('all')}
+            onClick={() => selectCategory('all')}
             className={cn(
               'rounded-full px-4 py-2 text-sm font-semibold transition-colors',
-              category === 'all' ? 'bg-brand-800 text-cream shadow-lift' : 'bg-white text-ink-100 hover:bg-brand-50'
+              catSlug === 'all' ? 'bg-brand-800 text-cream shadow-lift' : 'bg-white text-ink-100 hover:bg-brand-50'
             )}
           >
             جميع الأماكن
@@ -63,10 +73,10 @@ export default function PlacesPage() {
             return (
               <button
                 key={c.id}
-                onClick={() => setCategory(c.id)}
+                onClick={() => selectCategory(c.slug)}
                 className={cn(
                   'flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold transition-colors',
-                  category === c.id ? 'bg-brand-800 text-cream shadow-lift' : 'bg-white text-ink-100 hover:bg-brand-50'
+                  catSlug === c.slug ? 'bg-brand-800 text-cream shadow-lift' : 'bg-white text-ink-100 hover:bg-brand-50'
                 )}
               >
                 {Icon && <Icon className="h-4 w-4" />}
