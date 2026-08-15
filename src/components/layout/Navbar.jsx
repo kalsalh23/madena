@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Phone, ShieldCheck } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react';
 import Logo from './Logo';
 import Container from '@/components/ui/Container';
 import { cn } from '@/lib/utils';
@@ -16,11 +16,13 @@ const links = [
   { to: '/videos', label: 'الفيديوهات' },
   { to: '/events', label: 'الفعاليات' },
   { to: '/statistics', label: 'الإحصائيات' },
-  { to: '/reports', label: 'إبلاغات المدينة' },
   { to: '/about-platform', label: 'عن المنصة' },
 ];
 
-const MEDICAL_GUIDE_URL = 'https://dalil-altaybeh.vercel.app';
+const externalLinks = [
+  { href: 'https://dalil-altaybeh.vercel.app', label: 'دليلك الطبي' },
+  { href: 'https://iblaghtaybeh.vercel.app', label: 'إبلاغات الطيبة' },
+];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -73,19 +75,22 @@ export default function Navbar() {
               {l.label}
             </NavLink>
           ))}
-          <a
-            href={MEDICAL_GUIDE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={cn(
-              'rounded-xl px-3.5 py-2 text-sm font-semibold transition-colors',
-              scrolled || !isHome
-                ? 'bg-gold-500 text-brand-950 hover:bg-gold-600'
-                : 'bg-white/15 text-white hover:bg-white/25'
-            )}
-          >
-            دليلك الطبي
-          </a>
+          {externalLinks.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                'rounded-xl px-3.5 py-2 text-sm font-semibold transition-colors',
+                scrolled || !isHome
+                  ? 'bg-gold-500 text-brand-950 hover:bg-gold-600'
+                  : 'bg-white/15 text-white hover:bg-white/25'
+              )}
+            >
+              {l.label}
+            </a>
+          ))}
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
@@ -101,13 +106,6 @@ export default function Navbar() {
               {settings.contact_phone}
             </a>
           )}
-          <span
-            className="flex cursor-not-allowed items-center gap-2 rounded-xl2 bg-gold-500 px-4 py-2 text-sm font-bold text-brand-950 opacity-70"
-            title="لوحة التحكم عبر رابط مخصص لمدير النظام"
-          >
-            <ShieldCheck className="h-4 w-4" />
-            الإدارة
-          </span>
         </div>
 
         <button
@@ -147,21 +145,17 @@ export default function Navbar() {
                   {l.label}
                 </NavLink>
               ))}
-              <a
-                href={MEDICAL_GUIDE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-2 flex items-center justify-center rounded-xl2 bg-gold-500 px-4 py-3 text-sm font-bold text-brand-950 hover:bg-gold-600"
-              >
-                دليلك الطبي
-              </a>
-              <span
-                className="mt-2 flex cursor-not-allowed items-center justify-center gap-2 rounded-xl2 bg-gold-500 px-4 py-3 text-sm font-bold text-brand-950 opacity-70"
-                title="لوحة التحكم عبر رابط مخصص لمدير النظام"
-              >
-                <ShieldCheck className="h-4 w-4" />
-                لوحة الإدارة
-              </span>
+              {externalLinks.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 flex items-center justify-center rounded-xl2 bg-gold-500 px-4 py-3 text-sm font-bold text-brand-950 hover:bg-gold-600"
+                >
+                  {l.label}
+                </a>
+              ))}
             </Container>
           </motion.nav>
         )}
