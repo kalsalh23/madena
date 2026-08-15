@@ -9,7 +9,6 @@ const typeOptions = [
   { value: 'projects', label: 'المشاريع' },
   { value: 'places', label: 'الأماكن' },
   { value: 'events', label: 'الفعاليات' },
-  { value: 'gallery', label: 'الصور' },
   { value: 'videos', label: 'الفيديوهات' },
 ];
 

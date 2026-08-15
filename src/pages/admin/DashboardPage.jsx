@@ -1,21 +1,21 @@
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import {
-  Newspaper, Building2, Map, Image as ImageIcon, Play, CalendarDays,
+  Newspaper, Building2, Map, Play, CalendarDays,
   Users, ArrowLeft,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { api } from '@/services';
 import { formatNumber } from '@/lib/utils';
 import { useSEO } from '@/hooks/useSEO';
+import { ADMIN_BASE_PATH } from '@/lib/constants';
 
 const cards = [
-  { label: 'الأخبار', entity: 'news', icon: Newspaper, to: '/admin/news' },
-  { label: 'المشاريع', entity: 'projects', icon: Building2, to: '/admin/projects' },
-  { label: 'الأماكن', entity: 'places', icon: Map, to: '/admin/places' },
-  { label: 'الصور', entity: 'gallery', icon: ImageIcon, to: '/admin/gallery' },
-  { label: 'الفيديوهات', entity: 'videos', icon: Play, to: '/admin/videos' },
-  { label: 'الفعاليات', entity: 'events', icon: CalendarDays, to: '/admin/events' },
+  { label: 'الأخبار', entity: 'news', icon: Newspaper, to: `${ADMIN_BASE_PATH}/news` },
+  { label: 'المشاريع', entity: 'projects', icon: Building2, to: `${ADMIN_BASE_PATH}/projects` },
+  { label: 'الأماكن', entity: 'places', icon: Map, to: `${ADMIN_BASE_PATH}/places` },
+  { label: 'الفيديوهات', entity: 'videos', icon: Play, to: `${ADMIN_BASE_PATH}/videos` },
+  { label: 'الفعاليات', entity: 'events', icon: CalendarDays, to: `${ADMIN_BASE_PATH}/events` },
 ];
 
 export default function DashboardPage() {
@@ -43,7 +43,7 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
         {cards.map((c, i) => (
           <motion.div
             key={c.entity}
@@ -68,7 +68,7 @@ export default function DashboardPage() {
         <div className="card-surface p-6">
           <div className="mb-4 flex items-center justify-between">
             <h2 className="text-base font-bold text-ink-900">أحدث الأخبار</h2>
-            <Link to="/admin/news" className="flex items-center gap-1 text-xs font-bold text-brand-700 hover:text-brand-900">
+            <Link to={`${ADMIN_BASE_PATH}/news`} className="flex items-center gap-1 text-xs font-bold text-brand-700 hover:text-brand-900">
               الكل <ArrowLeft className="h-3.5 w-3.5" />
             </Link>
           </div>
@@ -76,7 +76,7 @@ export default function DashboardPage() {
             {latestNews?.map((n) => (
               <Link
                 key={n.id}
-                to="/admin/news"
+                to={`${ADMIN_BASE_PATH}/news`}
                 className="flex items-center gap-3 rounded-xl border border-[#E5E7EB] p-3 transition-colors hover:bg-brand-50/50"
               >
                 <img src={n.cover} alt="" className="h-12 w-16 rounded-lg object-cover" loading="lazy" />

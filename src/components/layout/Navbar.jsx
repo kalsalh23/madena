@@ -13,11 +13,13 @@ const links = [
   { to: '/projects', label: 'المشاريع' },
   { to: '/places', label: 'دليل المدينة' },
   { to: '/map', label: 'الخريطة' },
-  { to: '/gallery', label: 'المعرض' },
   { to: '/videos', label: 'الفيديوهات' },
   { to: '/events', label: 'الفعاليات' },
   { to: '/statistics', label: 'الإحصائيات' },
+  { to: '/about-platform', label: 'عن المنصة' },
 ];
+
+const MEDICAL_GUIDE_URL = 'https://dalil-altaybeh.vercel.app';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -70,25 +72,41 @@ export default function Navbar() {
               {l.label}
             </NavLink>
           ))}
+          <a
+            href={MEDICAL_GUIDE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(
+              'rounded-xl px-3.5 py-2 text-sm font-semibold transition-colors',
+              scrolled || !isHome
+                ? 'bg-gold-500 text-brand-950 hover:bg-gold-600'
+                : 'bg-white/15 text-white hover:bg-white/25'
+            )}
+          >
+            دليلك الطبي
+          </a>
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
           {settings.contact_phone && (
             <a
               href={`tel:${settings.contact_phone}`}
-              className="flex items-center gap-2 text-sm font-semibold text-brand-800"
+              className={cn(
+                'flex items-center gap-2 text-sm font-semibold transition-colors',
+                scrolled || !isHome ? 'text-brand-800' : 'text-white'
+              )}
             >
               <Phone className="h-4 w-4" />
               {settings.contact_phone}
             </a>
           )}
-          <Link
-            to="/admin/login"
-            className="flex items-center gap-2 rounded-xl2 bg-gold-500 px-4 py-2 text-sm font-bold text-brand-950 shadow-lift transition-all hover:-translate-y-0.5 hover:bg-gold-400"
+          <span
+            className="flex cursor-not-allowed items-center gap-2 rounded-xl2 bg-gold-500 px-4 py-2 text-sm font-bold text-brand-950 opacity-70"
+            title="لوحة التحكم عبر رابط مخصص لمدير النظام"
           >
             <ShieldCheck className="h-4 w-4" />
             الإدارة
-          </Link>
+          </span>
         </div>
 
         <button
@@ -97,9 +115,9 @@ export default function Navbar() {
           aria-label="القائمة"
         >
           {open ? (
-            <X className="h-6 w-6 text-brand-900" />
+            <X className={cn('h-6 w-6 transition-colors', scrolled || !isHome ? 'text-brand-900' : 'text-white')} />
           ) : (
-            <Menu className="h-6 w-6 text-brand-900" />
+            <Menu className={cn('h-6 w-6 transition-colors', scrolled || !isHome ? 'text-brand-900' : 'text-white')} />
           )}
         </button>
       </Container>
@@ -128,13 +146,21 @@ export default function Navbar() {
                   {l.label}
                 </NavLink>
               ))}
-              <Link
-                to="/admin/login"
-                className="mt-2 flex items-center justify-center gap-2 rounded-xl2 bg-gold-500 px-4 py-3 text-sm font-bold text-brand-950"
+              <a
+                href={MEDICAL_GUIDE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 flex items-center justify-center rounded-xl2 bg-gold-500 px-4 py-3 text-sm font-bold text-brand-950 hover:bg-gold-600"
+              >
+                دليلك الطبي
+              </a>
+              <span
+                className="mt-2 flex cursor-not-allowed items-center justify-center gap-2 rounded-xl2 bg-gold-500 px-4 py-3 text-sm font-bold text-brand-950 opacity-70"
+                title="لوحة التحكم عبر رابط مخصص لمدير النظام"
               >
                 <ShieldCheck className="h-4 w-4" />
                 لوحة الإدارة
-              </Link>
+              </span>
             </Container>
           </motion.nav>
         )}

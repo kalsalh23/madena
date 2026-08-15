@@ -29,3 +29,6 @@ npm-debug.log*
 
 # Supabase
 supabase/.temp
+
+.vercel
+.env*

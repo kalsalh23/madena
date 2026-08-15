@@ -9,7 +9,6 @@ const SELECT_MAP = {
   project_updates: 'id,project_id,title,body,image,created_at',
   places: 'id,name,slug,description,images,category_id,phone,website,address,working_hours,latitude,longitude,expires_at,is_featured,is_published,categories(name,slug,color,icon)',
   events: 'id,title,slug,description,images,category_id,start_date,end_date,location,latitude,longitude,organizer,expires_at,is_published,categories(name,slug,color,icon)',
-  gallery: 'id,title,description,image_url,category_id,expires_at,created_at,categories(name,slug,color,icon)',
   videos: 'id,title,description,video_url,thumbnail,category_id,duration,expires_at,is_published,categories(name,slug,color,icon)',
   statistics: 'id,label,value,icon,link,expires_at,sort_order,is_published',
   pages: 'id,title,slug,content,expires_at,is_published',

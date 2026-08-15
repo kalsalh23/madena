@@ -2,28 +2,28 @@ import { useState } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  LayoutDashboard, Newspaper, Building2, Map, Image as ImageIcon, Play,
+  LayoutDashboard, Newspaper, Building2, Map, Play,
   CalendarDays, BarChart3, FileText, Handshake, Megaphone, Settings as SettingsIcon,
   LogOut, Menu, X, ExternalLink, Info,
 } from 'lucide-react';
 import Logo from '@/components/layout/Logo';
 import { useAuth } from '@/contexts/AuthContext';
 import { cn } from '@/lib/utils';
+import { ADMIN_BASE_PATH } from '@/lib/constants';
 
 const nav = [
-  { to: '/admin', label: 'لوحة التحكم', icon: LayoutDashboard, end: true },
-  { to: '/admin/news', label: 'الأخبار', icon: Newspaper },
-  { to: '/admin/projects', label: 'المشاريع', icon: Building2 },
-  { to: '/admin/places', label: 'الأماكن', icon: Map },
-  { to: '/admin/gallery', label: 'الصور', icon: ImageIcon },
-  { to: '/admin/videos', label: 'الفيديوهات', icon: Play },
-  { to: '/admin/events', label: 'الفعاليات', icon: CalendarDays },
-  { to: '/admin/statistics', label: 'الإحصائيات', icon: BarChart3 },
-  { to: '/admin/pages', label: 'الصفحات', icon: FileText },
-  { to: '/admin/partners', label: 'الشركاء', icon: Handshake },
-  { to: '/admin/ads', label: 'الإعلانات', icon: Megaphone },
-  { to: '/admin/settings', label: 'إعدادات الموقع', icon: SettingsIcon },
-  { to: '/admin/about', label: 'عن المنصة', icon: Info },
+  { to: ADMIN_BASE_PATH, label: 'لوحة التحكم', icon: LayoutDashboard, end: true },
+  { to: `${ADMIN_BASE_PATH}/news`, label: 'الأخبار', icon: Newspaper },
+  { to: `${ADMIN_BASE_PATH}/projects`, label: 'المشاريع', icon: Building2 },
+  { to: `${ADMIN_BASE_PATH}/places`, label: 'الأماكن', icon: Map },
+  { to: `${ADMIN_BASE_PATH}/videos`, label: 'الفيديوهات', icon: Play },
+  { to: `${ADMIN_BASE_PATH}/events`, label: 'الفعاليات', icon: CalendarDays },
+  { to: `${ADMIN_BASE_PATH}/statistics`, label: 'الإحصائيات', icon: BarChart3 },
+  { to: `${ADMIN_BASE_PATH}/pages`, label: 'الصفحات', icon: FileText },
+  { to: `${ADMIN_BASE_PATH}/partners`, label: 'الشركاء', icon: Handshake },
+  { to: `${ADMIN_BASE_PATH}/ads`, label: 'الإعلانات', icon: Megaphone },
+  { to: `${ADMIN_BASE_PATH}/settings`, label: 'إعدادات الموقع', icon: SettingsIcon },
+  { to: `${ADMIN_BASE_PATH}/about`, label: 'عن المنصة', icon: Info },
 ];
 
 export default function AdminLayout() {

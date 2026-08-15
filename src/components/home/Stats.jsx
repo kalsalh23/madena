@@ -45,21 +45,59 @@ function StatCard({ stat, index }) {
   );
 }
 
+function CategoryCard({ category, index }) {
+  const Icon = resolveIcon(category.icon);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ delay: index * 0.06, duration: 0.5 }}
+      className="card-surface group p-5 hover:-translate-y-1 hover:shadow-lift"
+    >
+      <Link to={`/places?cat=${category.slug}`} className="flex items-center gap-4">
+        <span
+          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl"
+          style={{ backgroundColor: `${category.color}1a`, color: category.color }}
+        >
+          {Icon ? <Icon className="h-6 w-6" /> : null}
+        </span>
+        <div>
+          <div className="text-sm font-bold text-ink-900 group-hover:text-brand-700">{category.name}</div>
+          <div className="text-xs text-ink-100">دليل المدينة</div>
+        </div>
+        <ArrowLeft className="mr-auto h-4 w-4 text-brand-700 opacity-0 transition-opacity group-hover:opacity-100" />
+      </Link>
+    </motion.div>
+  );
+}
+
 export default function Stats() {
-  const { data: stats, isLoading } = useQuery({
+  const { data: stats, isLoading: statsLoading } = useQuery({
     queryKey: ['statistics'],
     queryFn: () => api.list('statistics', { order: 'sort_order', orderAsc: true }).then((r) => r.data),
   });
 
-  if (isLoading || !stats?.length) return null;
+  const { data: categories, isLoading: catsLoading } = useQuery({
+    queryKey: ['stats-place-categories'],
+    queryFn: () => api.list('categories', { filters: { type: 'places' }, order: 'sort_order', orderAsc: true }).then((r) => r.data),
+  });
+
+  if (statsLoading || catsLoading || !stats?.length) return null;
+
+  const population = stats.find((s) => s.icon === 'Users' || s.label === 'عدد السكان') || stats[0];
+  const hiddenSlugs = ['hotels', 'landmarks', 'fuel', 'parks'];
+  const sections = (categories || []).filter((c) => !hiddenSlugs.includes(c.slug));
 
   return (
     <section className="py-16">
       <Container>
         <SectionHeading eyebrow="حقائق سريعة" title="مدينتنا بالأرقام" />
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-          {stats.map((stat, i) => (
-            <StatCard key={stat.id} stat={stat} index={i} />
+          <StatCard stat={population} index={0} />
+          {sections.map((c, i) => (
+            <CategoryCard key={c.id} category={c} index={i + 1} />
           ))}
         </div>
       </Container>

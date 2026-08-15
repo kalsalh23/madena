@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import {
-  Facebook, Twitter, Instagram, Youtube, Phone, Mail, MapPin,
-  Newspaper, Building2, Map, Image as ImageIcon, Play, CalendarDays, BarChart3,
+  Facebook, Twitter, Instagram, Youtube, Phone, Mail, MapPin, Code2,
+  Newspaper, Building2, Map, Play, CalendarDays, BarChart3,
 } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import Logo from './Logo';
@@ -11,7 +11,6 @@ const quickLinks = [
   { to: '/news', label: 'الأخبار', icon: Newspaper },
   { to: '/projects', label: 'المشاريع', icon: Building2 },
   { to: '/places', label: 'دليل المدينة', icon: Map },
-  { to: '/gallery', label: 'المعرض', icon: ImageIcon },
   { to: '/videos', label: 'الفيديوهات', icon: Play },
   { to: '/events', label: 'الفعاليات', icon: CalendarDays },
   { to: '/statistics', label: 'الإحصائيات', icon: BarChart3 },
@@ -77,6 +76,9 @@ export default function Footer() {
               <Link to="/about" className="text-sm text-cream/75 hover:text-gold-400">عن المدينة</Link>
             </li>
             <li>
+              <Link to="/about-platform" className="text-sm text-cream/75 hover:text-gold-400">عن المنصة</Link>
+            </li>
+            <li>
               <Link to="/contact" className="text-sm text-cream/75 hover:text-gold-400">اتصل بنا</Link>
             </li>
             <li>
@@ -113,7 +115,20 @@ export default function Footer() {
       <div className="border-t border-white/10 py-5">
         <Container className="flex flex-col items-center justify-between gap-2 text-xs text-cream/50 sm:flex-row">
           <p>{settings.footer_text}</p>
-          <p>صُنع بحب لخدمة أهالي المدينة ✦</p>
+          <p className="flex items-center gap-1.5">
+            <span>صُنع بحب لخدمة أهالي المدينة ✦</span>
+          </p>
+        </Container>
+        <Container className="mt-2 flex flex-col items-center justify-center gap-1 text-xs text-cream/50 sm:flex-row sm:gap-2">
+          <span className="flex items-center gap-1.5">
+            <Code2 className="h-3.5 w-3.5 text-gold-500/70" />
+            تطوير: {settings.developer_name}
+          </span>
+          <span className="hidden sm:inline">•</span>
+          <a href={`tel:${settings.developer_phone}`} className="flex items-center gap-1.5 hover:text-gold-400">
+            <Phone className="h-3.5 w-3.5 text-gold-500/70" />
+            <span dir="ltr">{settings.developer_phone}</span>
+          </a>
         </Container>
       </div>
     </footer>

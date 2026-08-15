@@ -45,6 +45,13 @@ const groups = [
       { key: 'footer_text', label: 'نص الفوتر' },
     ],
   },
+  {
+    title: 'معلومات المطور',
+    fields: [
+      { key: 'developer_name', label: 'اسم المطور' },
+      { key: 'developer_phone', label: 'رقم تواصل المطور' },
+    ],
+  },
 ];
 
 export default function SettingsPage() {

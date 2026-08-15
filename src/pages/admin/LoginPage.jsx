@@ -7,6 +7,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/contexts/ToastContext';
 import { isDemoMode } from '@/services';
 import { useSEO } from '@/hooks/useSEO';
+import { ADMIN_BASE_PATH } from '@/lib/constants';
 
 export default function LoginPage() {
   useSEO({ title: 'تسجيل دخول الإدارة' });
@@ -19,7 +20,7 @@ export default function LoginPage() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const from = location.state?.from?.pathname || '/admin';
+  const from = location.state?.from?.pathname || ADMIN_BASE_PATH;
 
   const handleSubmit = async (e) => {
     e.preventDefault();

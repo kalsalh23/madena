@@ -5,7 +5,6 @@
   <url><loc>https://YOUR_DOMAIN/projects</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://YOUR_DOMAIN/places</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://YOUR_DOMAIN/map</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://YOUR_DOMAIN/gallery</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://YOUR_DOMAIN/videos</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://YOUR_DOMAIN/events</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://YOUR_DOMAIN/statistics</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>

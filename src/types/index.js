@@ -5,7 +5,7 @@
  * @property {string} id
  * @property {string} name
  * @property {string} slug
- * @property {'news'|'projects'|'places'|'events'|'gallery'|'videos'} type
+ * @property {'news'|'projects'|'places'|'events'|'videos'} type
  * @property {string} [icon]
  * @property {string} [color]
  * @property {number} sort_order
@@ -82,17 +82,6 @@
  * @property {number|null} [longitude]
  * @property {string} [organizer]
  * @property {boolean} is_published
- * @property {Category|null} [category]
- */
-
-/**
- * @typedef {Object} GalleryItem
- * @property {string} id
- * @property {string} [title]
- * @property {string} [description]
- * @property {string} image_url
- * @property {string|null} [category_id]
- * @property {string} created_at
  * @property {Category|null} [category]
  */
 
