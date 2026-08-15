@@ -20,6 +20,7 @@ const EventDetailPage = lazy(() => import('@/pages/EventDetailPage'));
 const StatisticsPage = lazy(() => import('@/pages/StatisticsPage'));
 const SearchPage = lazy(() => import('@/pages/SearchPage'));
 const AboutPlatformPage = lazy(() => import('@/pages/AboutPlatformPage'));
+const ReportsPage = lazy(() => import('@/pages/ReportsPage'));
 const DynamicPage = lazy(() => import('@/pages/DynamicPage'));
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'));
 
@@ -68,6 +69,7 @@ export default function App() {
         <Route path="/statistics" element={withSuspense(<StatisticsPage />)} />
         <Route path="/search" element={withSuspense(<SearchPage />)} />
         <Route path="/about-platform" element={withSuspense(<AboutPlatformPage />)} />
+        <Route path="/reports" element={withSuspense(<ReportsPage />)} />
         <Route path="/:slug" element={withSuspense(<DynamicPage />)} />
       </Route>
 

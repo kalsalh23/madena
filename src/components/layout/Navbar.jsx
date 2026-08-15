@@ -16,6 +16,7 @@ const links = [
   { to: '/videos', label: 'الفيديوهات' },
   { to: '/events', label: 'الفعاليات' },
   { to: '/statistics', label: 'الإحصائيات' },
+  { to: '/reports', label: 'إبلاغات المدينة' },
   { to: '/about-platform', label: 'عن المنصة' },
 ];
 
