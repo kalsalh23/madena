@@ -6,7 +6,16 @@ import App from './App';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { ToastProvider } from '@/contexts/ToastContext';
 import { SettingsProvider } from '@/contexts/SettingsContext';
+import { registerServiceWorker, syncPushSubscription } from '@/lib/pushNotifications';
 import './index.css';
+
+// تسجيل Service Worker لإشعارات الدفع
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    registerServiceWorker();
+    syncPushSubscription();
+  });
+}
 
 const queryClient = new QueryClient({
   defaultOptions: {

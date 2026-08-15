@@ -14,6 +14,10 @@ import {
 import { generateSlug } from '@/lib/utils';
 import { isDemoMode } from '@/services';
 import { toLocalInputValue, formatDate } from '@/lib/utils';
+import { sendPushNotification } from '@/lib/pushNotifications';
+
+// الأنواع التي تُرسل إشعاراً عند إضافة عنصر جديد منشور
+const NOTIFY_ON_CREATE = ['news', 'ads'];
 
 export default function EntityManager({
   title,
@@ -44,10 +48,26 @@ export default function EntityManager({
 
   const createMutation = useMutation({
     mutationFn: (payload) => api.create(entity, payload),
-    onSuccess: () => {
+    onSuccess: (res) => {
       queryClient.invalidateQueries({ queryKey: key });
       toast('تمت الإضافة بنجاح');
       setModal(null);
+      // إشعار دفع للمواطنين عند إضافة خبر/إعلان منشور
+      const published = res?.data?.is_published !== false;
+      if (NOTIFY_ON_CREATE.includes(entity) && published) {
+        const href =
+          entity === 'news'
+            ? `/news/${res?.data?.slug || res?.data?.title}`
+            : res?.data?.link || '/';
+        sendPushNotification({
+          title:
+            entity === 'news'
+              ? `خبر جديد: ${res?.data?.title || 'منشور جديد'}`
+              : `إعلان جديد: ${res?.data?.title || 'منشور جديد'}`,
+          body: res?.data?.excerpt || res?.data?.body || 'تصفح المزيد من بوابة المدينة',
+          url: href,
+        }).catch(() => {});
+      }
     },
     onError: toastError,
   });

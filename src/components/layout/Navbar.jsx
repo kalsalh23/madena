@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Phone } from 'lucide-react';
 import Logo from './Logo';
 import Container from '@/components/ui/Container';
+import NotificationBell from './NotificationBell';
 import { cn } from '@/lib/utils';
 import { useSettings } from '@/contexts/SettingsContext';
 
@@ -94,6 +95,7 @@ export default function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
+          <NotificationBell dark={!scrolled && isHome} />
           {settings.contact_phone && (
             <a
               href={`tel:${settings.contact_phone}`}
@@ -108,17 +110,20 @@ export default function Navbar() {
           )}
         </div>
 
-        <button
-          onClick={() => setOpen((v) => !v)}
-          className="rounded-lg p-2 lg:hidden"
-          aria-label="القائمة"
-        >
+        <div className="flex items-center gap-1 lg:hidden">
+          <NotificationBell dark={!scrolled && isHome} />
+          <button
+            onClick={() => setOpen((v) => !v)}
+            className="rounded-lg p-2"
+            aria-label="القائمة"
+          >
           {open ? (
             <X className={cn('h-6 w-6 transition-colors', scrolled || !isHome ? 'text-brand-900' : 'text-white')} />
           ) : (
             <Menu className={cn('h-6 w-6 transition-colors', scrolled || !isHome ? 'text-brand-900' : 'text-white')} />
           )}
-        </button>
+          </button>
+        </div>
       </Container>
 
       <AnimatePresence>
