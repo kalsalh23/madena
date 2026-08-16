@@ -152,6 +152,20 @@ export const api = {
     return { data };
   },
 
+  // إنشاء إعلان عام (بانر) يظهر لكل الزوار
+  async createAnnouncement({ title, body, url }) {
+    if (isDemoMode) return { data: null };
+    const { data, error } = await supabase.from('announcements').insert({
+      title,
+      body: body || '',
+      url: url || '/',
+      is_active: true,
+      created_at: new Date().toISOString(),
+    }).select().single();
+    if (error) throw error;
+    return { data };
+  },
+
   async update(table, id, payload) {
     if (isDemoMode) throw new Error('وضع العرض التجريبي — اربط Supabase لتعديل البيانات');
     const { data, error } = await supabase.from(table).update(payload).eq('id', id).select().single();

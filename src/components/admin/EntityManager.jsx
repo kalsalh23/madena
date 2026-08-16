@@ -59,12 +59,20 @@ export default function EntityManager({
           entity === 'news'
             ? `/news/${res?.data?.slug || res?.data?.title}`
             : res?.data?.link || '/';
+        const pushTitle =
+          entity === 'news'
+            ? `خبر جديد: ${res?.data?.title || 'منشور جديد'}`
+            : `إعلان جديد: ${res?.data?.title || 'منشور جديد'}`;
+        // إشعار مدفوع للمشتركين
         sendPushNotification({
-          title:
-            entity === 'news'
-              ? `خبر جديد: ${res?.data?.title || 'منشور جديد'}`
-              : `إعلان جديد: ${res?.data?.title || 'منشور جديد'}`,
+          title: pushTitle,
           body: res?.data?.excerpt || res?.data?.body || 'تصفح المزيد من بوابة المدينة',
+          url: href,
+        }).catch(() => {});
+        // بانر عام يظهر لكل الزوار (مصدر موحد لإشعارات الموقع)
+        api.createAnnouncement({
+          title: pushTitle,
+          body: res?.data?.excerpt || res?.data?.body || '',
           url: href,
         }).catch(() => {});
       }
