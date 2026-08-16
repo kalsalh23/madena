@@ -29,14 +29,21 @@ self.addEventListener("push", (event) => {
 
 self.addEventListener("notificationclick", (event) => {
   event.notification.close();
-  const target = event.notification.data?.url || "/";
+  const raw = event.notification.data?.url || "/";
+  // تحويل الرابط إلى رابط مطلق يعمل خارج الموقع (نسبي أو خارجي)
+  let target;
+  try {
+    target = new URL(raw, self.location.origin).href;
+  } catch {
+    target = self.location.origin + raw;
+  }
 
   event.waitUntil(
     (async () => {
       const all = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
       for (const client of all) {
-        if ("focus" in client) {
-          client.navigate(target);
+        if (client.url && new URL(client.url).origin === new URL(target).origin) {
+          await client.navigate(target);
           return client.focus();
         }
       }
