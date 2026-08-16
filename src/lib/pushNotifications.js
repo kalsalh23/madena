@@ -1,6 +1,9 @@
 import { supabase } from '@/lib/supabase';
 
-const VAPID_PUBLIC_KEY = import.meta.env.VITE_VAPID_PUBLIC_KEY;
+// المفتاح العام لـ VAPID — عام بطبيعته وليس سرًا، يُستخدم كاحتياطي ليعمل النظام فورًا
+export const VAPID_PUBLIC_KEY =
+  import.meta.env.VITE_VAPID_PUBLIC_KEY ||
+  'BJZJ59AsouCy6zq2L8h-BGYRSTeQqTgiL5MHCWTfMngVHWz8pHL8j83bOwuJwKvuxD6SR9XnQ-A-vZTX6h51UWk';
 
 /* إرسال إشعار للمواطنين عبر Edge Function */
 export async function sendPushNotification({ title, body = '', url = '/' }) {
