@@ -32,7 +32,10 @@ export default function NotificationBell({ dark, className }) {
         toast('تم تفعيل الإشعارات بنجاح ✓');
       }
     } catch (err) {
-      error(err?.message || 'تعذر تفعيل الإشعارات');
+      const msg =
+        err?.message ||
+        'تعذر تفعيل الإشعارات — تأكد من اتصال Supabase أو أعد المحاولة';
+      error(msg);
     } finally {
       setBusy(false);
     }
