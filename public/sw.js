@@ -19,7 +19,7 @@ self.addEventListener("push", (event) => {
   const options = {
     body: data.body || "",
     icon: "/logo.jpg",
-    badge: "/logo.jpg",
+    badge: "/badge.png",
     image: data.image || undefined,
     data: { url: data.url || "/" },
     vibrate: [200, 100, 200],
