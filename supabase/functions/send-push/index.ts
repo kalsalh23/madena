@@ -50,7 +50,13 @@ Deno.serve(async (req) => {
             endpoint: sub.endpoint,
             keys: { p256dh: sub.p256dh, auth: sub.auth },
           },
-          payload
+          payload,
+          {
+            // تسليم فوري: أولوية عالية + مدة صلاحية قصيرة حتى لا يُرجَّأ التسليم
+            TTL: 300,
+            urgency: "high",
+            topic: "madena-notify",
+          }
         );
         results.sent += 1;
       } catch (err) {

@@ -15,9 +15,27 @@ import { generateSlug } from '@/lib/utils';
 import { isDemoMode } from '@/services';
 import { toLocalInputValue, formatDate } from '@/lib/utils';
 import { sendPushNotification } from '@/lib/pushNotifications';
+import { SITE } from '@/lib/constants';
 
 // الأنواع التي تُرسل إشعاراً عند إضافة عنصر جديد منشور
 const NOTIFY_ON_CREATE = ['news', 'ads'];
+
+// استخراج اسم التصنيف من الخبر/الإعلان
+const categoryNameOf = (item) => {
+  const c = item?.category;
+  if (typeof c === 'string') return c;
+  if (Array.isArray(c)) return c[0]?.name || c[0] || '';
+  return c?.name || '';
+};
+
+// لمحة سريعة عن المحتوى (اقتطاع ذكي)
+const snippetOf = (text, max = 90) => {
+  const plain = String(text || '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  return plain.length > max ? `${plain.slice(0, max)}…` : plain;
+};
 
 export default function EntityManager({
   title,
@@ -55,24 +73,31 @@ export default function EntityManager({
       // إشعار دفع للمواطنين عند إضافة خبر/إعلان منشور
       const published = res?.data?.is_published !== false;
       if (NOTIFY_ON_CREATE.includes(entity) && published) {
+        const item = res?.data;
         const href =
           entity === 'news'
-            ? `/news/${res?.data?.slug || res?.data?.title}`
-            : res?.data?.link || '/';
-        const pushTitle =
+            ? `/news/${item?.slug || item?.title}`
+            : item?.link || '/';
+        const type =
           entity === 'news'
-            ? `خبر جديد: ${res?.data?.title || 'منشور جديد'}`
-            : `إعلان جديد: ${res?.data?.title || 'منشور جديد'}`;
+            ? categoryNameOf(item) || 'خبر جديد'
+            : 'إعلان جديد';
+        const headline = item?.title || (entity === 'news' ? 'خبر جديد' : 'إعلان جديد');
+        const glimpse = snippetOf(item?.excerpt || item?.body || item?.description || '');
+        // العنوان: اسم المنصة — نوع المحتوى
+        const pushTitle = `${SITE.name} — ${type}`;
+        // النص: عنوان المحتوى + لمحة سريعة عنه
+        const pushBody = glimpse ? `${headline}\n${glimpse}` : headline;
         // إشعار مدفوع للمشتركين
         sendPushNotification({
           title: pushTitle,
-          body: res?.data?.excerpt || res?.data?.body || 'تصفح المزيد من بوابة المدينة',
+          body: pushBody,
           url: href,
         }).catch(() => {});
         // بانر عام يظهر لكل الزوار (مصدر موحد لإشعارات الموقع)
         api.createAnnouncement({
           title: pushTitle,
-          body: res?.data?.excerpt || res?.data?.body || '',
+          body: pushBody,
           url: href,
         }).catch(() => {});
       }

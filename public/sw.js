@@ -20,8 +20,11 @@ self.addEventListener("push", (event) => {
     body: data.body || "",
     icon: "/logo.jpg",
     badge: "/logo.jpg",
+    image: data.image || undefined,
     data: { url: data.url || "/" },
     vibrate: [200, 100, 200],
+    renotify: true,
+    tag: data.tag || "madena-notify",
   };
 
   event.waitUntil(self.registration.showNotification(title, options));
