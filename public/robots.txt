@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin
 Disallow: /search
 
-Sitemap: https://YOUR_DOMAIN/sitemap.xml
+Sitemap: https://taybetalemam.vercel.app/sitemap.xml
