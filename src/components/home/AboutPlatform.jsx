@@ -52,12 +52,31 @@ export default function AboutPlatform() {
             <h3 className="mt-8 mb-4 text-base font-bold text-ink-900">أبرز الإمكانيات</h3>
             <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               {features.map((f) => (
-                <li key={f} className="flex items-start gap-3 rounded-xl bg-[#F8FAFC] p-4 text-sm text-ink-100">
+                <li key={f} className="flex items-start gap-3 rounded-xl bg-[#F5F3EC] p-4 text-sm text-ink-100">
                   <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-brand-700" />
                   {f}
                 </li>
               ))}
             </ul>
+
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-6 rounded-xl bg-brand-950 px-6 py-6">
+              {[
+                { src: '/images/patterns/tatriz.png', label: 'تطريز' },
+                { src: '/images/patterns/fsefsaa.png', label: 'فسيفساء' },
+                { src: '/images/patterns/kitab.png', label: 'كتاب' },
+                { src: '/images/patterns/sanbala.png', label: 'سنبلة' },
+              ].map(({ src, label }) => (
+                <figure key={label} className="flex flex-col items-center gap-2">
+                  <span
+                    className="pattern-badge"
+                    style={{ backgroundImage: `url(${src})` }}
+                    role="img"
+                    aria-label={label}
+                  />
+                  <figcaption className="text-[11px] font-semibold text-gold-300">{label}</figcaption>
+                </figure>
+              ))}
+            </div>
 
             <h3 className="mt-8 mb-4 text-base font-bold text-ink-900">مطور المنصة</h3>
             <div className="flex flex-col items-center gap-4 rounded-xl bg-gradient-to-b from-brand-800 to-brand-950 px-6 py-8 text-center shadow-soft ring-1 ring-black/5">
@@ -92,19 +111,19 @@ export default function AboutPlatform() {
             <h3 className="mt-8 mb-4 text-base font-bold text-ink-900">الدعم الفني</h3>
             <ul className="grid grid-cols-1 gap-3 sm:grid-cols-3">
               {settings.contact_phone && (
-                <li className="flex items-center gap-3 rounded-xl bg-[#F8FAFC] p-4 text-sm">
+                <li className="flex items-center gap-3 rounded-xl bg-[#F5F3EC] p-4 text-sm">
                   <Phone className="h-5 w-5 text-brand-700" />
                   <a href={`tel:${settings.contact_phone}`} dir="ltr" className="font-semibold text-ink-900">{settings.contact_phone}</a>
                 </li>
               )}
               {settings.contact_email && (
-                <li className="flex items-center gap-3 rounded-xl bg-[#F8FAFC] p-4 text-sm">
+                <li className="flex items-center gap-3 rounded-xl bg-[#F5F3EC] p-4 text-sm">
                   <Mail className="h-5 w-5 text-brand-700" />
                   <a href={`mailto:${settings.contact_email}`} className="font-semibold text-ink-900">{settings.contact_email}</a>
                 </li>
               )}
               {settings.contact_address && (
-                <li className="flex items-center gap-3 rounded-xl bg-[#F8FAFC] p-4 text-sm">
+                <li className="flex items-center gap-3 rounded-xl bg-[#F5F3EC] p-4 text-sm">
                   <MapPin className="h-5 w-5 shrink-0 text-brand-700" />
                   <span className="font-semibold text-ink-900">{settings.contact_address}</span>
                 </li>

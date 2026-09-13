@@ -15,7 +15,7 @@ export default function Pagination({ page, pageCount, onPageChange, className })
   return (
     <div className={cn('flex items-center justify-center gap-2', className)}>
       <button
-        className={cn(btn, 'border border-[#E5E7EB] bg-white text-ink-100 hover:border-brand-300')}
+        className={cn(btn, 'border border-[#E4E0D4] bg-white text-ink-100 hover:border-brand-300')}
         disabled={page <= 1}
         onClick={() => onPageChange(page - 1)}
         aria-label="السابق"
@@ -38,7 +38,7 @@ export default function Pagination({ page, pageCount, onPageChange, className })
             btn,
             p === page
               ? 'bg-brand-800 text-cream shadow-lift'
-              : 'border border-[#E5E7EB] bg-white text-ink-100 hover:border-brand-300'
+              : 'border border-[#E4E0D4] bg-white text-ink-100 hover:border-brand-300'
           )}
         >
           {p}
@@ -53,7 +53,7 @@ export default function Pagination({ page, pageCount, onPageChange, className })
         </>
       )}
       <button
-        className={cn(btn, 'border border-[#E5E7EB] bg-white text-ink-100 hover:border-brand-300')}
+        className={cn(btn, 'border border-[#E4E0D4] bg-white text-ink-100 hover:border-brand-300')}
         disabled={page >= pageCount}
         onClick={() => onPageChange(page + 1)}
         aria-label="التالي"

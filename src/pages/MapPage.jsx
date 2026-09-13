@@ -44,7 +44,7 @@ export default function MapPage() {
         subtitle: p.category?.name || p.address,
         image: p.images?.[0],
         href: `/places/${p.slug}`,
-        color: p.category?.color || '#054239',
+        color: p.category?.color || '#084239',
       })),
     projects: (projects || [])
       .filter((p) => p.latitude && p.longitude)
@@ -56,7 +56,7 @@ export default function MapPage() {
         subtitle: `${p.status === 'ongoing' ? 'جاري التنفيذ' : p.status === 'completed' ? 'مكتمل' : 'مخطط'} — ${p.progress}%`,
         image: p.images?.[0],
         href: `/projects/${p.slug}`,
-        color: p.status === 'completed' ? '#0e7a63' : p.status === 'ongoing' ? '#6b1f2a' : '#988561',
+        color: p.status === 'completed' ? '#0d7562' : p.status === 'ongoing' ? '#5f0113' : '#958162',
       })),
     events: (events || [])
       .filter((e) => e.latitude && e.longitude)
@@ -68,7 +68,7 @@ export default function MapPage() {
         subtitle: e.location,
         image: e.images?.[0],
         href: `/events/${e.slug}`,
-        color: '#988561',
+        color: '#958162',
       })),
   };
 

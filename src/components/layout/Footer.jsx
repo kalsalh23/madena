@@ -28,6 +28,7 @@ export default function Footer() {
 
   return (
     <footer className="mt-20 bg-brand-950 text-cream">
+      <div className="pattern-strip pattern-strip-tatriz opacity-80" aria-hidden="true" />
       <Container className="grid gap-12 py-14 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <Logo dark />

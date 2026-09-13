@@ -38,7 +38,7 @@ export default function ProjectCard({ item }) {
           <span>نسبة الإنجاز</span>
           <span className="text-brand-700">{item.progress}%</span>
         </div>
-        <div className="h-2.5 w-full overflow-hidden rounded-full bg-[#E5E7EB]">
+        <div className="h-2.5 w-full overflow-hidden rounded-full bg-[#E4E0D4]">
           <div
             className="h-full rounded-full bg-gradient-to-l from-brand-800 to-brand-500 transition-all duration-700"
             style={{ width: `${item.progress}%` }}

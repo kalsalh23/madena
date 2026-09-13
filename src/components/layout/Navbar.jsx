@@ -132,7 +132,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="overflow-hidden border-t border-[#E5E7EB] bg-white lg:hidden"
+            className="overflow-hidden border-t border-[#E4E0D4] bg-white lg:hidden"
           >
             <Container className="flex flex-col gap-1 py-4">
               {links.map((l) => (

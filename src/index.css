@@ -2,6 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===== خط ثمانية العرضي — خط العناوين في الهوية البصرية ===== */
+@font-face {
+  font-family: 'Thmanyah Serif Display';
+  src: url('/fonts/thmanyah-serif-display-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Thmanyah Serif Display';
+  src: url('/fonts/thmanyah-serif-display-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Thmanyah Serif Display';
+  src: url('/fonts/thmanyah-serif-display-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Thmanyah Serif Display';
+  src: url('/fonts/thmanyah-serif-display-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Thmanyah Serif Display';
+  src: url('/fonts/thmanyah-serif-display-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   :root {
     color-scheme: light;
@@ -12,7 +49,7 @@
   }
 
   body {
-    @apply bg-[#F8FAFC] font-body text-ink-900 antialiased;
+    @apply bg-[#F5F3EC] font-body text-ink-900 antialiased;
     text-rendering: optimizeLegibility;
   }
 
@@ -26,7 +63,7 @@
   }
 
   ::selection {
-    @apply bg-brand-800 text-cream;
+    @apply bg-brand-800 text-gold-100;
   }
 
   ::-webkit-scrollbar {
@@ -50,27 +87,27 @@
   }
 
   .card-surface {
-    @apply rounded-xl2 border border-[#E5E7EB] bg-white shadow-soft transition-all duration-300;
+    @apply rounded-xl2 border border-gold-200/70 bg-white shadow-soft transition-all duration-300;
   }
 
   .btn {
     @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl2 px-5 py-2.5 text-sm font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-500/30 disabled:cursor-not-allowed disabled:opacity-50;
   }
   .btn-primary {
-    @apply btn bg-brand-800 text-cream shadow-lift hover:-translate-y-0.5 hover:bg-brand-900;
+    @apply btn bg-brand-800 text-gold-100 shadow-lift hover:-translate-y-0.5 hover:bg-brand-900;
   }
   .btn-gold {
     @apply btn bg-gold-500 text-brand-950 shadow-lift hover:-translate-y-0.5 hover:bg-gold-400;
   }
   .btn-ghost {
-    @apply btn border border-[#E5E7EB] bg-white text-ink-900 hover:border-brand-300 hover:bg-brand-50;
+    @apply btn border border-gold-200 bg-white text-ink-900 hover:border-brand-300 hover:bg-brand-50;
   }
   .btn-danger {
     @apply btn bg-wine-700 text-white hover:bg-wine-600;
   }
 
   .input {
-    @apply w-full rounded-xl border border-[#E5E7EB] bg-white px-4 py-2.5 text-sm text-ink-900 placeholder:text-ink-100/60 transition-colors focus:border-brand-500 focus:outline-none focus:ring-4 focus:ring-brand-500/15;
+    @apply w-full rounded-xl border border-gold-200 bg-white px-4 py-2.5 text-sm text-ink-900 placeholder:text-ink-400/60 transition-colors focus:border-brand-500 focus:outline-none focus:ring-4 focus:ring-brand-500/15;
   }
 
   .label {
@@ -102,12 +139,33 @@
     @apply my-4 rounded-xl2;
   }
   .prose-content blockquote {
-    @apply my-4 rounded-xl border-r-4 border-gold-500 bg-cream/60 p-4 italic;
+    @apply my-4 rounded-xl border-r-4 border-gold-500 bg-gold-100/60 p-4 italic;
+  }
+
+  /* ===== زخارف الهوية — الأنماط الأربعة (فسيفساء، تطريز، كتاب، سنبلة) ===== */
+  .pattern-strip {
+    @apply pointer-events-none h-16 w-full bg-repeat-x bg-center;
+    background-size: auto 100%;
+  }
+  .pattern-strip-tatriz {
+    background-image: url('/images/patterns/strip-tatriz.png');
+  }
+  .pattern-strip-fsefsaa {
+    background-image: url('/images/patterns/strip-fsefsaa.png');
+  }
+  .pattern-strip-kitab {
+    background-image: url('/images/patterns/strip-kitab.png');
+  }
+  .pattern-strip-sanbala {
+    background-image: url('/images/patterns/strip-sanbala.png');
+  }
+  .pattern-badge {
+    @apply inline-block h-14 w-14 bg-contain bg-center bg-no-repeat;
   }
 }
 
 .skeleton {
-  @apply animate-shimmer rounded-lg bg-[#E5E7EB]/70 bg-[linear-gradient(90deg,#E5E7EB_25%,#F1F5F9_50%,#E5E7EB_75%)] bg-[length:700px_100%];
+  @apply animate-shimmer rounded-lg bg-gold-200/70 bg-[linear-gradient(90deg,#ece8dd_25%,#f5f3ec_50%,#ece8dd_75%)] bg-[length:700px_100%];
 }
 
 /* Leaflet RTL overrides */
@@ -129,5 +187,5 @@
   @apply rounded-lg px-2 py-1 text-sm hover:bg-brand-50;
 }
 .rte-content {
-  @apply min-h-[220px] rounded-xl border border-[#E5E7EB] bg-white px-4 py-3 text-sm leading-7 outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-500/15;
+  @apply min-h-[220px] rounded-xl border border-gold-200 bg-white px-4 py-3 text-sm leading-7 outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-500/15;
 }

@@ -18,7 +18,7 @@ self.addEventListener("push", (event) => {
   const title = data.title || "بوابة المدينة";
   const options = {
     body: data.body || "",
-    icon: "/logo.jpg",
+    icon: "/logo.png",
     badge: "/badge.png",
     image: data.image || undefined,
     data: { url: data.url || "/" },

@@ -63,7 +63,7 @@ export default function ProjectsManagePage() {
       label: 'الإنجاز',
       render: (item) => (
         <span className="flex items-center gap-2">
-          <span className="h-2 w-16 overflow-hidden rounded-full bg-[#E5E7EB]">
+          <span className="h-2 w-16 overflow-hidden rounded-full bg-[#E4E0D4]">
             <span className="block h-full rounded-full bg-brand-700" style={{ width: `${item.progress}%` }} />
           </span>
           <span className="text-xs font-bold text-brand-700">{item.progress}%</span>

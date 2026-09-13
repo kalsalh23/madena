@@ -2,7 +2,7 @@ export const SITE = {
   name: 'طيبة الإمام',
   tagline: 'بوابة المدينة الشاملة',
   description: 'بوابة إلكترونية شاملة لمدينتك: آخر الأخبار، المشاريع، دليل الأماكن، الفعاليات، الخرائط والإحصائيات.',
-  logo: '/logo.jpg',
+  logo: '/logo.png',
   developer_name: 'المهندس قصي مهند الصالح',
   developer_phone: '0952639157',
 };

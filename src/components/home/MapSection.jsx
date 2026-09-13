@@ -26,7 +26,7 @@ export default function MapSection() {
       subtitle: p.category?.name || p.address,
       image: p.images?.[0],
       href: `/places/${p.slug}`,
-      color: p.category?.color || '#054239',
+      color: p.category?.color || '#084239',
     }));
 
   return (

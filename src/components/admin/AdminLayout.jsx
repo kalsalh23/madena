@@ -37,7 +37,7 @@ export default function AdminLayout() {
   };
 
   return (
-    <div className="flex min-h-screen bg-[#F8FAFC]">
+    <div className="flex min-h-screen bg-[#F5F3EC]">
       <AnimatePresence>
         {sidebarOpen && (
           <motion.div
@@ -120,7 +120,7 @@ export default function AdminLayout() {
       </aside>
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-[#E5E7EB] bg-white/90 px-4 backdrop-blur sm:px-6 lg:px-8">
+        <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-[#E4E0D4] bg-white/90 px-4 backdrop-blur sm:px-6 lg:px-8">
           <button
             onClick={() => setSidebarOpen(true)}
             className="rounded-lg p-2 text-ink-900 lg:hidden"

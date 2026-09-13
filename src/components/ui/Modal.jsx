@@ -45,7 +45,7 @@ export default function Modal({ open, onClose, title, children, className, size 
               className
             )}
           >
-            <div className="sticky top-0 z-10 flex items-center justify-between border-b border-[#E5E7EB] bg-white/95 px-6 py-4 backdrop-blur">
+            <div className="sticky top-0 z-10 flex items-center justify-between border-b border-[#E4E0D4] bg-white/95 px-6 py-4 backdrop-blur">
               <h3 className="text-lg font-bold text-ink-900">{title}</h3>
               <button
                 onClick={onClose}

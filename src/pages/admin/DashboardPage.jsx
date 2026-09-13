@@ -77,7 +77,7 @@ export default function DashboardPage() {
               <Link
                 key={n.id}
                 to={`${ADMIN_BASE_PATH}/news`}
-                className="flex items-center gap-3 rounded-xl border border-[#E5E7EB] p-3 transition-colors hover:bg-brand-50/50"
+                className="flex items-center gap-3 rounded-xl border border-[#E4E0D4] p-3 transition-colors hover:bg-brand-50/50"
               >
                 <img src={n.cover} alt="" className="h-12 w-16 rounded-lg object-cover" loading="lazy" />
                 <div className="min-w-0 flex-1">

@@ -32,3 +32,8 @@ supabase/.temp
 
 .vercel
 .env*
+ 
+# ????? ??? ????? 
+identity_extract/ 
+scripts/.admin_token 
+portablegit* 

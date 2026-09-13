@@ -37,7 +37,7 @@ export function ToastProvider({ children }) {
               initial={{ opacity: 0, y: 20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 10, scale: 0.95 }}
-              className="pointer-events-auto flex items-center gap-3 rounded-xl2 border border-[#E5E7EB] bg-white px-4 py-3 shadow-lift"
+              className="pointer-events-auto flex items-center gap-3 rounded-xl2 border border-[#E4E0D4] bg-white px-4 py-3 shadow-lift"
             >
               {icons[t.type] || icons.info}
               <p className="text-sm font-semibold text-ink-900">{t.message}</p>

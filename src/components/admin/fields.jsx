@@ -78,7 +78,7 @@ export function ImageUpload({ value = '', onChange, aspect = 'video' }) {
     <div>
       <input ref={inputRef} type="file" accept="image/*" className="hidden" onChange={handle} />
       {value ? (
-        <div className={`relative overflow-hidden rounded-xl2 border border-[#E5E7EB] ${aspect === 'square' ? 'h-40 w-40' : 'aspect-video max-w-md'}`}>
+        <div className={`relative overflow-hidden rounded-xl2 border border-[#E4E0D4] ${aspect === 'square' ? 'h-40 w-40' : 'aspect-video max-w-md'}`}>
           <img src={value} alt="معاينة" className="h-full w-full object-cover" />
           <button
             type="button"
@@ -92,7 +92,7 @@ export function ImageUpload({ value = '', onChange, aspect = 'video' }) {
         <button
           type="button"
           onClick={() => inputRef.current?.click()}
-          className={`flex flex-col items-center justify-center gap-2 rounded-xl2 border-2 border-dashed border-[#E5E7EB] text-ink-100 transition-colors hover:border-brand-400 hover:text-brand-700 ${
+          className={`flex flex-col items-center justify-center gap-2 rounded-xl2 border-2 border-dashed border-[#E4E0D4] text-ink-100 transition-colors hover:border-brand-400 hover:text-brand-700 ${
             aspect === 'square' ? 'h-40 w-40' : 'aspect-video max-w-md'
           }`}
         >
@@ -140,7 +140,7 @@ export function MultipleImageUpload({ value = [], onChange }) {
     <div>
       <div className="flex flex-wrap gap-3">
         {value.map((url, i) => (
-          <div key={i} className="relative h-24 w-28 overflow-hidden rounded-xl border border-[#E5E7EB]">
+          <div key={i} className="relative h-24 w-28 overflow-hidden rounded-xl border border-[#E4E0D4]">
             <img src={url} alt="" className="h-full w-full object-cover" />
             <button
               type="button"
@@ -154,7 +154,7 @@ export function MultipleImageUpload({ value = [], onChange }) {
         <button
           type="button"
           onClick={() => inputRef.current?.click()}
-          className="flex h-24 w-28 flex-col items-center justify-center gap-1.5 rounded-xl border-2 border-dashed border-[#E5E7EB] text-ink-100 transition-colors hover:border-brand-400 hover:text-brand-700"
+          className="flex h-24 w-28 flex-col items-center justify-center gap-1.5 rounded-xl border-2 border-dashed border-[#E4E0D4] text-ink-100 transition-colors hover:border-brand-400 hover:text-brand-700"
         >
           {uploading ? <Loader2 className="h-5 w-5 animate-spin" /> : <ImagePlus className="h-5 w-5" />}
           <span className="text-[11px] font-semibold">إضافة صور</span>
@@ -212,7 +212,7 @@ export function RichEditor({ value = '', onChange }) {
             type="button"
             onClick={t.fn}
             title={t.label}
-            className="rounded-lg border border-[#E5E7EB] p-2 text-ink-100 transition-colors hover:bg-brand-50 hover:text-brand-800"
+            className="rounded-lg border border-[#E4E0D4] p-2 text-ink-100 transition-colors hover:bg-brand-50 hover:text-brand-800"
           >
             <t.icon className="h-4 w-4" />
           </button>

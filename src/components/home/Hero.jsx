@@ -89,7 +89,11 @@ export default function Hero() {
         </div>
       </Container>
 
-      <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-[#F8FAFC] to-transparent" />
+      <div
+        className="pattern-strip pattern-strip-sanbala absolute bottom-16 inset-x-0 opacity-60"
+        aria-hidden="true"
+      />
+      <div className="absolute bottom-0 inset-x-0 h-20 bg-gradient-to-t from-[#F5F3EC] to-transparent" />
     </section>
   );
 }

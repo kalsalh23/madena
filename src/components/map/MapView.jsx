@@ -56,7 +56,7 @@ export default function MapView({
           <Marker
             key={m.id}
             position={[m.lat, m.lng]}
-            icon={createPinIcon(m.color || '#054239')}
+            icon={createPinIcon(m.color || '#084239')}
           >
             <Popup maxWidth={260}>
               <div className="text-right">

@@ -16,6 +16,7 @@ export default function Partners() {
 
   return (
     <section className="bg-cream/50 py-16">
+      <div className="pattern-strip pattern-strip-fsefsaa mx-auto mb-10 max-w-5xl opacity-70" aria-hidden="true" />
       <Container>
         <SectionHeading eyebrow="شركاء النجاح" title="شركاء المدينة" />
         <div className="flex flex-wrap items-center justify-center gap-8">

@@ -22,7 +22,7 @@ export default function SearchBar({ size = 'lg', placeholder = 'ابحث في ا
         className={
           size === 'lg'
             ? 'w-full rounded-2xl border-0 bg-white/95 py-4 pr-14 pl-5 text-base text-ink-900 shadow-lift placeholder:text-ink-100/60 focus:outline-none focus:ring-4 focus:ring-gold-500/40'
-            : 'w-full rounded-xl border border-[#E5E7EB] bg-white py-2.5 pr-11 pl-4 text-sm text-ink-900 focus:border-brand-500 focus:outline-none focus:ring-4 focus:ring-brand-500/15'
+            : 'w-full rounded-xl border border-[#E4E0D4] bg-white py-2.5 pr-11 pl-4 text-sm text-ink-900 focus:border-brand-500 focus:outline-none focus:ring-4 focus:ring-brand-500/15'
         }
       />
       <button

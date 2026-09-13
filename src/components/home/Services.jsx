@@ -7,11 +7,11 @@ import Container from '@/components/ui/Container';
 import SectionHeading from '@/components/ui/SectionHeading';
 
 const services = [
-  { to: '/news', icon: Newspaper, title: 'الأخبار', desc: 'تابع آخر أخبار المدينة وبلدياتها.', color: '#054239' },
-  { to: '/projects', icon: Building2, title: 'المشاريع', desc: 'تعرف على المشاريع التنموية الجارية.', color: '#988561' },
-  { to: '/places', icon: Map, title: 'دليل الأماكن', desc: 'أهم الأماكن والخدمات في المدينة.', color: '#0e7a63' },
-  { to: '/events', icon: CalendarDays, title: 'الفعاليات', desc: 'جدول الفعاليات والمناسبات القادمة.', color: '#6b1f2a' },
-  { to: '/videos', icon: Play, title: 'الفيديوهات', desc: 'جولات مصورة وتقارير عن المدينة.', color: '#988561' },
+  { to: '/news', icon: Newspaper, title: 'الأخبار', desc: 'تابع آخر أخبار المدينة وبلدياتها.', color: '#084239' },
+  { to: '/projects', icon: Building2, title: 'المشاريع', desc: 'تعرف على المشاريع التنموية الجارية.', color: '#958162' },
+  { to: '/places', icon: Map, title: 'دليل الأماكن', desc: 'أهم الأماكن والخدمات في المدينة.', color: '#0d7562' },
+  { to: '/events', icon: CalendarDays, title: 'الفعاليات', desc: 'جدول الفعاليات والمناسبات القادمة.', color: '#5f0113' },
+  { to: '/videos', icon: Play, title: 'الفيديوهات', desc: 'جولات مصورة وتقارير عن المدينة.', color: '#958162' },
 ];
 
 export default function Services() {

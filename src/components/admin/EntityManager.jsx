@@ -266,7 +266,7 @@ export default function EntityManager({
         ) : (
           <table className="w-full min-w-[720px] text-right text-sm">
             <thead>
-              <tr className="border-b border-[#E5E7EB] bg-[#F8FAFC] text-xs text-ink-100">
+              <tr className="border-b border-[#E4E0D4] bg-[#F5F3EC] text-xs text-ink-100">
                 {columns.map((c) => (
                   <th key={c.key} className="px-5 py-3.5 font-bold">
                     {c.label}
@@ -279,7 +279,7 @@ export default function EntityManager({
             </thead>
             <tbody>
               {data.map((item) => (
-                <tr key={item.id} className="border-b border-[#E5E7EB] last:border-0 hover:bg-brand-50/40">
+                <tr key={item.id} className="border-b border-[#E4E0D4] last:border-0 hover:bg-brand-50/40">
                   {columns.map((c) => (
                     <td key={c.key} className="px-5 py-4">
                       {c.render ? c.render(item) : item[c.key]}

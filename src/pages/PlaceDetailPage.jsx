@@ -85,7 +85,7 @@ export default function PlaceDetailPage() {
                       title: place.name,
                       subtitle: place.category?.name,
                       image: place.images?.[0],
-                      color: place.category?.color || '#054239',
+                      color: place.category?.color || '#084239',
                     },
                   ]}
                   height={380}

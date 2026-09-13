@@ -124,7 +124,7 @@ export default function EventDetailPage() {
             {event.latitude && event.longitude && (
               <MapView
                 markers={[
-                  { id: event.id, lat: event.latitude, lng: event.longitude, title: event.title, subtitle: event.location, color: '#988561' },
+                  { id: event.id, lat: event.latitude, lng: event.longitude, title: event.title, subtitle: event.location, color: '#958162' },
                 ]}
                 height={260}
                 fitBounds

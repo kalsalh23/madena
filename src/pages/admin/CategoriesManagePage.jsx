@@ -22,7 +22,7 @@ export default function CategoriesManagePage() {
     { name: 'slug', label: 'الرابط', hint: 'اتركه فارغاً لتوليده تلقائياً' },
     { name: 'type', label: 'النوع', type: 'select', options: typeOptions, required: true },
     { name: 'icon', label: 'اسم الأيقونة', hint: 'من مكتبة lucide' },
-    { name: 'color', label: 'اللون (Hex)', hint: 'مثال: #054239' },
+    { name: 'color', label: 'اللون (Hex)', hint: 'مثال: #084239' },
     { name: 'sort_order', label: 'الترتيب', type: 'number' },
     { name: 'is_published', label: 'منشور', type: 'toggle' },
   ];
@@ -32,7 +32,7 @@ export default function CategoriesManagePage() {
       key: 'color',
       label: 'اللون',
       render: (item) => (
-        <span className="inline-block h-6 w-6 rounded-full border border-[#E5E7EB]" style={{ backgroundColor: item.color }} />
+        <span className="inline-block h-6 w-6 rounded-full border border-[#E4E0D4]" style={{ backgroundColor: item.color }} />
       ),
     },
     { key: 'name', label: 'الاسم', render: (item) => <span className="font-semibold text-ink-900">{item.name}</span> },
@@ -48,7 +48,7 @@ export default function CategoriesManagePage() {
       columns={columns}
       fields={fields}
       searchFields={['name', 'slug']}
-      defaultValues={{ type: 'places', color: '#054239', sort_order: 0, is_published: true }}
+      defaultValues={{ type: 'places', color: '#084239', sort_order: 0, is_published: true }}
       transform={(v) => ({ ...v, slug: generateSlug(v.slug || v.name) })}
     />
   );

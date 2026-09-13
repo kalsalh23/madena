@@ -107,7 +107,7 @@ export default function SettingsPage() {
         <form onSubmit={handleSubmit} className="space-y-8">
           {groups.map((g) => (
             <div key={g.title} className="card-surface p-6">
-              <h2 className="mb-5 border-b border-[#E5E7EB] pb-3 text-base font-bold text-ink-900">{g.title}</h2>
+              <h2 className="mb-5 border-b border-[#E4E0D4] pb-3 text-base font-bold text-ink-900">{g.title}</h2>
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 {g.fields.map((f) => (
                   <div key={f.key} className={f.type === 'textarea' || f.type === 'image' ? 'sm:col-span-2' : ''}>

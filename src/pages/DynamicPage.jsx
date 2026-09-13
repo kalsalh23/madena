@@ -38,7 +38,7 @@ export default function DynamicPage() {
     <div className="pt-28 pb-16">
       <Container className="max-w-3xl">
         <h1 className="mb-8 font-display text-3xl font-black text-brand-900 sm:text-4xl">{page.title}</h1>
-        <article className="prose-content rounded-xl2 border border-[#E5E7EB] bg-white p-6 shadow-soft sm:p-8">
+        <article className="prose-content rounded-xl2 border border-[#E4E0D4] bg-white p-6 shadow-soft sm:p-8">
           <div dangerouslySetInnerHTML={{ __html: page.content || '' }} />
         </article>
       </Container>

@@ -161,7 +161,7 @@ export default function ProjectDetailPage() {
                   <span className="text-ink-100">نسبة الإنجاز</span>
                   <span className="text-brand-700">{project.progress}%</span>
                 </div>
-                <div className="h-3 w-full overflow-hidden rounded-full bg-[#E5E7EB]">
+                <div className="h-3 w-full overflow-hidden rounded-full bg-[#E4E0D4]">
                   <div
                     className="h-full rounded-full bg-gradient-to-l from-brand-800 to-brand-500"
                     style={{ width: `${project.progress}%` }}
@@ -182,7 +182,7 @@ export default function ProjectDetailPage() {
                       lat: project.latitude,
                       lng: project.longitude,
                       title: project.name,
-                      color: '#6b1f2a',
+                      color: '#5f0113',
                     },
                   ]}
                   height={280}

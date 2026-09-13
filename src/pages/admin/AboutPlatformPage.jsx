@@ -47,7 +47,7 @@ export default function AboutPlatformPage() {
           <h3 className="mt-8 mb-4 text-base font-bold text-ink-900">أبرز الإمكانيات</h3>
           <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {features.map((f) => (
-              <li key={f} className="flex items-start gap-3 rounded-xl bg-[#F8FAFC] p-4 text-sm text-ink-100">
+              <li key={f} className="flex items-start gap-3 rounded-xl bg-[#F5F3EC] p-4 text-sm text-ink-100">
                 <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-brand-700" />
                 {f}
               </li>
@@ -56,11 +56,11 @@ export default function AboutPlatformPage() {
 
           <h3 className="mt-8 mb-4 text-base font-bold text-ink-900">مطور المنصة</h3>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-            <li className="flex items-center gap-3 rounded-xl bg-[#F8FAFC] p-4 text-sm">
+            <li className="flex items-center gap-3 rounded-xl bg-[#F5F3EC] p-4 text-sm">
               <User className="h-5 w-5 shrink-0 text-brand-700" />
               <span className="font-semibold text-ink-900">{settings.developer_name}</span>
             </li>
-            <li className="flex items-center gap-3 rounded-xl bg-[#F8FAFC] p-4 text-sm">
+            <li className="flex items-center gap-3 rounded-xl bg-[#F5F3EC] p-4 text-sm">
               <Phone className="h-5 w-5 shrink-0 text-brand-700" />
               <a href={`tel:${settings.developer_phone}`} dir="ltr" className="font-semibold text-ink-900">{settings.developer_phone}</a>
             </li>
@@ -69,19 +69,19 @@ export default function AboutPlatformPage() {
           <h3 className="mt-8 mb-4 text-base font-bold text-ink-900">الدعم الفني</h3>
           <ul className="grid grid-cols-1 gap-3 sm:grid-cols-3">
             {settings.contact_phone && (
-              <li className="flex items-center gap-3 rounded-xl bg-[#F8FAFC] p-4 text-sm">
+              <li className="flex items-center gap-3 rounded-xl bg-[#F5F3EC] p-4 text-sm">
                 <Phone className="h-5 w-5 text-brand-700" />
                 <a href={`tel:${settings.contact_phone}`} dir="ltr" className="font-semibold text-ink-900">{settings.contact_phone}</a>
               </li>
             )}
             {settings.contact_email && (
-              <li className="flex items-center gap-3 rounded-xl bg-[#F8FAFC] p-4 text-sm">
+              <li className="flex items-center gap-3 rounded-xl bg-[#F5F3EC] p-4 text-sm">
                 <Mail className="h-5 w-5 text-brand-700" />
                 <a href={`mailto:${settings.contact_email}`} className="font-semibold text-ink-900">{settings.contact_email}</a>
               </li>
             )}
             {settings.contact_address && (
-              <li className="flex items-center gap-3 rounded-xl bg-[#F8FAFC] p-4 text-sm">
+              <li className="flex items-center gap-3 rounded-xl bg-[#F5F3EC] p-4 text-sm">
                 <MapPin className="h-5 w-5 text-brand-700" />
                 <span className="font-semibold text-ink-900">{settings.contact_address}</span>
               </li>

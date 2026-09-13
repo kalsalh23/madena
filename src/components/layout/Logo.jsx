@@ -9,7 +9,7 @@ export default function Logo({ className, dark = false, to = '/' }) {
         <img src={SITE.logo} alt={SITE.name} className="h-full w-full object-cover" />
       </span>
       <span className="flex flex-col leading-tight">
-        <span className={cn('font-display text-lg font-extrabold', dark ? 'text-cream' : 'text-brand-900')}>
+        <span className={cn('font-display text-lg font-black', dark ? 'text-cream' : 'text-brand-900')}>
           {SITE.name}
         </span>
         <span className={cn('text-[10px] font-medium tracking-wide', dark ? 'text-cream/70' : 'text-gold-700')}>
