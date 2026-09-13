@@ -9,7 +9,12 @@ VTOKEN = os.environ.get('VERCEL_TOKEN', '')
 TEAM = 'team_grBXAnvjNcx41kaOltdI7yQg'
 PROJECT = 'prj_kQQzELFuAyhnPM4huh4YetMysM6q'
 if not VTOKEN:
-    print('ضع الرمز في متغير البيئة VERCEL_TOKEN أولاً')
+    # اقرأ الرمز من ملف محلي غير مرفوع بالخطأ إن لم يتوفر متغير بيئة
+    p = os.path.join(os.path.dirname(__file__), '.vercel_token')
+    if os.path.exists(p):
+        VTOKEN = open(p, encoding='utf-8').read().strip()
+if not VTOKEN:
+    print('ضع الرمز في متغير البيئة VERCEL_TOKEN أو scripts/.vercel_token')
     sys.exit(1)
 
 
@@ -22,11 +27,8 @@ def api(path):
 
 p = api(f'/v9/projects/{PROJECT}')
 print('name:', p.get('name'))
-print('framework:', p.get('framework'))
-git = p.get('link') or {}
-print('git:', json.dumps(git, ensure_ascii=False)[:400])
 latest = (p.get('latestDeployments') or [{}])[0]
-print('latest deployment:', latest.get('url'), '|', latest.get('createdAt'), '|', latest.get('readyState'))
+print('latest deployment:', latest.get('url'), '|', latest.get('readyState'))
 meta = latest.get('meta') or {}
-print('deploy meta:', json.dumps(meta, ensure_ascii=False)[:300])
+print('commit:', meta.get('githubCommitMessage'), '| sha:', str(meta.get('githubCommitSha'))[:8])
 print('alias:', json.dumps(latest.get('alias'), ensure_ascii=False)[:300])
