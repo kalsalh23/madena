@@ -70,7 +70,8 @@ export default function EntityManager({
       queryClient.invalidateQueries({ queryKey: key });
       toast('تمت الإضافة بنجاح');
       setModal(null);
-      // إشعار دفع للمواطنين عند إضافة خبر/إعلان منشور
+      // إشعار دفع للمواطنين عند إضافة خبر/إعلان منشور — يصل لمشتركي الإشعارات
+      // فقط ولا يظهر أي أثر له أعلى الواجهة
       const published = res?.data?.is_published !== false;
       if (NOTIFY_ON_CREATE.includes(entity) && published) {
         const item = res?.data;
@@ -90,12 +91,6 @@ export default function EntityManager({
         const pushBody = glimpse ? `${headline}\n${glimpse}` : headline;
         // إشعار مدفوع للمشتركين
         sendPushNotification({
-          title: pushTitle,
-          body: pushBody,
-          url: href,
-        }).catch(() => {});
-        // بانر عام يظهر لكل الزوار (مصدر موحد لإشعارات الموقع)
-        api.createAnnouncement({
           title: pushTitle,
           body: pushBody,
           url: href,
