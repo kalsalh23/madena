@@ -39,3 +39,5 @@ scripts/.admin_token
 portablegit* 
 scripts/.vercel_token 
 scripts/.supabase_token 
+__pycache__/ 
+__pycache__/ 
