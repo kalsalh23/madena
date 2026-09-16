@@ -1,7 +1,7 @@
 import {
   Users, GraduationCap, Cross, Trees, Building2, Home, Landmark,
   Newspaper, Map, Image as ImageIcon, Play, CalendarDays, Pill, Utensils,
-  ShoppingBag, Fuel, Banknote, Hotel, Moon, Church, Star, User, Phone,
+  ShoppingBag, Fuel, Banknote, Coins, Moon, Church, Star, User, Phone,
 } from 'lucide-react';
 
 export const iconMap = {
@@ -22,7 +22,7 @@ export const iconMap = {
   ShoppingBag,
   Fuel,
   Banknote,
-  Hotel,
+  Coins,
   Moon,
   Church,
   Star,

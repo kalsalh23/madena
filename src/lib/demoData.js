@@ -12,16 +12,12 @@ export const demoCategories = [
   { id: 'c-places-mosques', name: 'المساجد', slug: 'mosques', type: 'places', icon: 'Moon', color: '#084239', sort_order: 6 },
   { id: 'c-places-gas', name: 'مراكز الغاز', slug: 'gas-centers', type: 'places', icon: 'Fuel', color: '#084239', sort_order: 7 },
   { id: 'c-places-government', name: 'الدوائر الحكومية', slug: 'government', type: 'places', icon: 'Landmark', color: '#084239', sort_order: 8 },
-  { id: 'c-places-hotels', name: 'الفنادق', slug: 'hotels', type: 'places', icon: 'Hotel', color: '#958162', sort_order: 9 },
   { id: 'c-places-markets', name: 'الأسواق', slug: 'markets', type: 'places', icon: 'ShoppingBag', color: '#5f0113', sort_order: 10 },
   { id: 'c-places-fuel', name: 'محطات الوقود', slug: 'fuel', type: 'places', icon: 'Fuel', color: '#084239', sort_order: 11 },
-  { id: 'c-places-banks', name: 'البنوك', slug: 'banks', type: 'places', icon: 'Banknote', color: '#0d7562', sort_order: 12 },
+  { id: 'c-places-exchanges', name: 'مراكز الصرافة', slug: 'exchanges', type: 'places', icon: 'Coins', color: '#0d7562', sort_order: 12 },
   { id: 'c-places-landmarks', name: 'المعالم الأثرية', slug: 'landmarks', type: 'places', icon: 'Monument', color: '#5f0113', sort_order: 13 },
   { id: 'c-news-local', name: 'الأخبار المحلية', slug: 'local-news', type: 'news', icon: 'Newspaper', color: '#084239', sort_order: 1 },
   { id: 'c-news-projects', name: 'المشاريع', slug: 'projects-news', type: 'news', icon: 'Building2', color: '#958162', sort_order: 2 },
-  { id: 'c-events-community', name: 'فعاليات المجتمع', slug: 'community-events', type: 'events', icon: 'Calendar', color: '#5f0113', sort_order: 1 },
-  { id: 'c-events-exhibitions', name: 'المعارض', slug: 'exhibitions', type: 'events', icon: 'GalleryHorizontal', color: '#084239', sort_order: 2 },
-  { id: 'c-videos-city', name: 'فيديو المدينة', slug: 'city-videos', type: 'videos', icon: 'Play', color: '#084239', sort_order: 1 },
 ];
 
 export const demoNews = [
@@ -169,8 +165,8 @@ export const demoSettings = {
   social_twitter: 'https://x.com/TaybatAlImam1',
   social_instagram: 'https://instagram.com',
   social_youtube: 'https://youtube.com/@TaybetAlImamOfficial',
-  map_center_lat: '35.26389',
-  map_center_lng: '36.70667',
+  map_center_lat: '35.2685',
+  map_center_lng: '36.7175',
   about_us: 'طيبة الإمام مدينة سورية في ناحية صوران التابعة لمنطقة حماة، تقع في الريف الشمالي الغربي لمحافظة حماة على بُعد نحو 18 كم شمال مدينة حماة و3 كم غرب الطريق الدولي (حماة-حلب). سُمّيت نسبةً إلى ضريح الإمام علي بن الحسين زين العابدين، الحفيد السادس للإمام علي بن أبي طالب، حيث دُفن جثمانه في هذا المكان منذ أكثر من ألف عام. تشتهر المدينة بتراثها الأثري؛ فقد اكتُشفت فيها أكبر لوحة فسيفساء في العالم (نحو 600 م2) تعود للقرن الخامس الميلادي وتُعرض في متحف طيبة الإمام، كما كانت مئذنة مسجد الإمام المستطيلة (الهزازة) من أبرز معالمها. اقتصاد المدينة يقوم على التجارة والزراعة والصناعة، وتنتشر فيها زراعة الفستق الحلبي والزيتون والعنب وصناعة الأحذية الجلدية، وتُعرف بطيبة أهلها وارتفاع التحصيل العلمي، إذ يُقدَّر عدد سكانها بأكثر من 40 ألف نسمة.',
   footer_text: '© 2026 طيبة الإمام — جميع الحقوق محفوظة.',
   developer_name: 'المهندس قصي مهند الصالح',

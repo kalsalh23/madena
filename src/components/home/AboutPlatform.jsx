@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { CheckCircle2, Phone, Mail, MapPin, User, Instagram, Facebook } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import SectionHeading from '@/components/ui/SectionHeading';
+import LogoDownloads from '@/components/ui/LogoDownloads';
 import { useSettings } from '@/contexts/SettingsContext';
 import { SITE } from '@/lib/constants';
 
@@ -59,23 +60,26 @@ export default function AboutPlatform() {
               ))}
             </ul>
 
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-6 rounded-xl bg-brand-950 px-6 py-6">
-              {[
-                { src: '/images/patterns/tatriz.png', label: 'تطريز' },
-                { src: '/images/patterns/fsefsaa.png', label: 'فسيفساء' },
-                { src: '/images/patterns/kitab.png', label: 'كتاب' },
-                { src: '/images/patterns/sanbala.png', label: 'سنبلة' },
-              ].map(({ src, label }) => (
-                <figure key={label} className="flex flex-col items-center gap-2">
-                  <span
-                    className="pattern-badge"
-                    style={{ backgroundImage: `url(${src})` }}
-                    role="img"
-                    aria-label={label}
-                  />
-                  <figcaption className="text-[11px] font-semibold text-gold-300">{label}</figcaption>
-                </figure>
-              ))}
+            <div className="mt-8 flex flex-col items-center gap-5 rounded-xl bg-brand-950 px-6 py-6">
+              <div className="flex flex-wrap items-center justify-center gap-6">
+                {[
+                  { src: '/images/patterns/tatriz.png', label: 'تطريز' },
+                  { src: '/images/patterns/fsefsaa.png', label: 'فسيفساء' },
+                  { src: '/images/patterns/kitab.png', label: 'كتاب' },
+                  { src: '/images/patterns/sanbala.png', label: 'سنبلة' },
+                ].map(({ src, label }) => (
+                  <figure key={label} className="flex flex-col items-center gap-2">
+                    <span
+                      className="pattern-badge"
+                      style={{ backgroundImage: `url(${src})` }}
+                      role="img"
+                      aria-label={label}
+                    />
+                    <figcaption className="text-[11px] font-semibold text-gold-300">{label}</figcaption>
+                  </figure>
+                ))}
+              </div>
+              <LogoDownloads withPatterns className="w-full" />
             </div>
 
             <h3 className="mt-8 mb-4 text-base font-bold text-ink-900">مطور المنصة</h3>

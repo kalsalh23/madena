@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+content = '''<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url><loc>https://taybetalemam.vercel.app/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
   <url><loc>https://taybetalemam.vercel.app/news</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
@@ -8,3 +8,6 @@
   <url><loc>https://taybetalemam.vercel.app/statistics</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://taybetalemam.vercel.app/about-platform</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
 </urlset>
+'''
+open(r'C:\Users\DELL\Desktop\almadena\public\sitemap.xml', 'w', encoding='utf-8').write(content)
+print('sitemap updated')

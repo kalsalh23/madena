@@ -8,8 +8,6 @@ const typeOptions = [
   { value: 'news', label: 'الأخبار' },
   { value: 'projects', label: 'المشاريع' },
   { value: 'places', label: 'الأماكن' },
-  { value: 'events', label: 'الفعاليات' },
-  { value: 'videos', label: 'الفيديوهات' },
 ];
 
 const typeLabels = Object.fromEntries(typeOptions.map((t) => [t.value, t.label]));

@@ -14,9 +14,6 @@ const ProjectDetailPage = lazy(() => import('@/pages/ProjectDetailPage'));
 const PlacesPage = lazy(() => import('@/pages/PlacesPage'));
 const PlaceDetailPage = lazy(() => import('@/pages/PlaceDetailPage'));
 const MapPage = lazy(() => import('@/pages/MapPage'));
-const VideosPage = lazy(() => import('@/pages/VideosPage'));
-const EventsPage = lazy(() => import('@/pages/EventsPage'));
-const EventDetailPage = lazy(() => import('@/pages/EventDetailPage'));
 const StatisticsPage = lazy(() => import('@/pages/StatisticsPage'));
 const SearchPage = lazy(() => import('@/pages/SearchPage'));
 const AboutPlatformPage = lazy(() => import('@/pages/AboutPlatformPage'));
@@ -28,8 +25,6 @@ const DashboardPage = lazy(() => import('@/pages/admin/DashboardPage'));
 const NewsManagePage = lazy(() => import('@/pages/admin/NewsManagePage'));
 const ProjectsManagePage = lazy(() => import('@/pages/admin/ProjectsManagePage'));
 const PlacesManagePage = lazy(() => import('@/pages/admin/PlacesManagePage'));
-const VideosManagePage = lazy(() => import('@/pages/admin/VideosManagePage'));
-const EventsManagePage = lazy(() => import('@/pages/admin/EventsManagePage'));
 const StatisticsManagePage = lazy(() => import('@/pages/admin/StatisticsManagePage'));
 const CategoriesManagePage = lazy(() => import('@/pages/admin/CategoriesManagePage'));
 const PagesManagePage = lazy(() => import('@/pages/admin/PagesManagePage'));
@@ -62,9 +57,6 @@ export default function App() {
         <Route path="/places" element={withSuspense(<PlacesPage />)} />
         <Route path="/places/:slug" element={withSuspense(<PlaceDetailPage />)} />
         <Route path="/map" element={withSuspense(<MapPage />)} />
-        <Route path="/videos" element={withSuspense(<VideosPage />)} />
-        <Route path="/events" element={withSuspense(<EventsPage />)} />
-        <Route path="/events/:slug" element={withSuspense(<EventDetailPage />)} />
         <Route path="/statistics" element={withSuspense(<StatisticsPage />)} />
         <Route path="/search" element={withSuspense(<SearchPage />)} />
         <Route path="/about-platform" element={withSuspense(<AboutPlatformPage />)} />
@@ -84,8 +76,6 @@ export default function App() {
         <Route path="news" element={withSuspense(<NewsManagePage />)} />
         <Route path="projects" element={withSuspense(<ProjectsManagePage />)} />
         <Route path="places" element={withSuspense(<PlacesManagePage />)} />
-        <Route path="videos" element={withSuspense(<VideosManagePage />)} />
-        <Route path="events" element={withSuspense(<EventsManagePage />)} />
         <Route path="statistics" element={withSuspense(<StatisticsManagePage />)} />
         <Route path="categories" element={withSuspense(<CategoriesManagePage />)} />
         <Route path="pages" element={withSuspense(<PagesManagePage />)} />

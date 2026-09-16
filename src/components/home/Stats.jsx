@@ -45,7 +45,7 @@ function StatCard({ stat, index }) {
   );
 }
 
-function CategoryCard({ category, index }) {
+function CategoryCard({ category, count, index }) {
   const Icon = resolveIcon(category.icon);
 
   return (
@@ -65,7 +65,9 @@ function CategoryCard({ category, index }) {
         </span>
         <div>
           <div className="text-sm font-bold text-ink-900 group-hover:text-brand-700">{category.name}</div>
-          <div className="text-xs text-ink-100">دليل المدينة</div>
+          <div className="text-xs text-ink-100">
+            {count > 0 ? `${formatNumber(count)} موقع مسجل` : 'دليل المدينة'}
+          </div>
         </div>
         <ArrowLeft className="mr-auto h-4 w-4 text-brand-700 opacity-0 transition-opacity group-hover:opacity-100" />
       </Link>
@@ -81,13 +83,25 @@ export default function Stats() {
 
   const { data: categories, isLoading: catsLoading } = useQuery({
     queryKey: ['stats-place-categories'],
-    queryFn: () => api.list('categories', { filters: { type: 'places' }, order: 'sort_order', orderAsc: true }).then((r) => r.data),
+    queryFn: () =>
+      api
+        .list('categories', { filters: { type: 'places', is_published: true }, order: 'sort_order', orderAsc: true })
+        .then((r) => r.data),
+  });
+
+  const { data: places } = useQuery({
+    queryKey: ['stats-place-counts'],
+    queryFn: () => api.list('places', { filters: { is_published: true }, perPage: 500, page: 1 }).then((r) => r.data),
+    staleTime: 5 * 60 * 1000,
   });
 
   if (statsLoading || catsLoading || !stats?.length) return null;
 
-  const population = stats.find((s) => s.icon === 'Users' || s.label === 'عدد السكان') || stats[0];
-  const hiddenSlugs = ['hotels', 'landmarks', 'fuel', 'parks'];
+  const hiddenSlugs = ['hotels', 'landmarks', 'fuel', 'parks', 'gas-centers'];
+  const counts = {};
+  for (const p of places || []) {
+    if (p.category?.slug) counts[p.category.slug] = (counts[p.category.slug] || 0) + 1;
+  }
   const sections = (categories || []).filter((c) => !hiddenSlugs.includes(c.slug));
 
   return (
@@ -95,11 +109,23 @@ export default function Stats() {
       <Container>
         <SectionHeading eyebrow="حقائق سريعة" title="مدينتنا بالأرقام" />
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-          <StatCard stat={population} index={0} />
-          {sections.map((c, i) => (
-            <CategoryCard key={c.id} category={c} index={i + 1} />
+          {stats.map((s, i) => (
+            <StatCard key={s.id} stat={s} index={i} />
           ))}
         </div>
+
+        {sections.length > 0 && (
+          <>
+            <h3 className="mb-5 mt-12 text-center text-base font-bold text-ink-100">
+              أقسام دليل المدينة — انقر على أي قسم لاستعراض مواقعه
+            </h3>
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+              {sections.map((c, i) => (
+                <CategoryCard key={c.id} category={c} count={counts[c.slug] || 0} index={i} />
+              ))}
+            </div>
+          </>
+        )}
       </Container>
     </section>
   );

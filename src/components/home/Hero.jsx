@@ -34,14 +34,32 @@ export default function Hero() {
   });
 
   return (
-    <section className="relative flex min-h-[88vh] items-center overflow-hidden">
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: `url(${settings.hero_image})`,
-        }}
+    <section className="relative flex min-h-[88vh] items-center overflow-hidden bg-brand-950">
+      {/* خلفية الهوية: تدرجات زمردية + وهج ذهبي وعناصر زخرفية */}
+      <div className="absolute inset-0 bg-gradient-to-b from-brand-950 via-brand-900 to-brand-950" />
+      <div className="absolute inset-0 bg-[radial-gradient(1100px_560px_at_88%_-10%,rgba(182,166,122,0.20),transparent_62%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(900px_520px_at_8%_112%,rgba(29,183,154,0.16),transparent_60%)]" />
+
+      {/* رمز المدينة كعلامة مائية كبيرة في الخلفية */}
+      <img
+        src="/logo-full.png"
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-1/2 w-[620px] max-w-none -translate-x-1/2 -translate-y-1/2 select-none opacity-[0.08] sm:w-[760px]"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-brand-950/85 via-brand-900/70 to-brand-950/90" />
+
+      {/* زخرفة التطريز أعلى القسم */}
+      <div className="pattern-strip pattern-strip-tatriz absolute top-0 inset-x-0 opacity-25" aria-hidden="true" />
+
+      {settings.hero_image ? (
+        <>
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${settings.hero_image})` }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-brand-950/80 via-brand-900/60 to-brand-950/85" />
+        </>
+      ) : null}
 
       <Container className="relative z-10 py-32 text-center">
         <motion.span
@@ -81,11 +99,10 @@ export default function Hero() {
           <SearchBar size="lg" />
         </motion.div>
 
-        <div className="mx-auto mt-14 grid max-w-3xl grid-cols-2 gap-6 sm:grid-cols-4">
+        <div className="mx-auto mt-14 grid max-w-3xl grid-cols-2 gap-6 sm:grid-cols-3">
           <StatItem value={overview?.places_count || 0} label="مكان وخدمة" delay={0.4} />
           <StatItem value={overview?.projects_count || 0} label="مشروع تنموي" delay={0.5} />
           <StatItem value={overview?.news_count || 0} label="خبر جديد" delay={0.6} />
-          <StatItem value={overview?.events_count || 0} label="فعالية قادمة" delay={0.7} />
         </div>
       </Container>
 

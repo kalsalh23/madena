@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  LayoutDashboard, Newspaper, Building2, Map, Play,
-  CalendarDays, BarChart3, FileText, Handshake, Megaphone, Settings as SettingsIcon,
+  LayoutDashboard, Newspaper, Building2, Map,
+  BarChart3, FileText, Handshake, Megaphone, Settings as SettingsIcon,
   LogOut, Menu, X, ExternalLink, Info,
 } from 'lucide-react';
 import Logo from '@/components/layout/Logo';
@@ -16,8 +16,6 @@ const nav = [
   { to: `${ADMIN_BASE_PATH}/news`, label: 'الأخبار', icon: Newspaper },
   { to: `${ADMIN_BASE_PATH}/projects`, label: 'المشاريع', icon: Building2 },
   { to: `${ADMIN_BASE_PATH}/places`, label: 'الأماكن', icon: Map },
-  { to: `${ADMIN_BASE_PATH}/videos`, label: 'الفيديوهات', icon: Play },
-  { to: `${ADMIN_BASE_PATH}/events`, label: 'الفعاليات', icon: CalendarDays },
   { to: `${ADMIN_BASE_PATH}/statistics`, label: 'الإحصائيات', icon: BarChart3 },
   { to: `${ADMIN_BASE_PATH}/pages`, label: 'الصفحات', icon: FileText },
   { to: `${ADMIN_BASE_PATH}/partners`, label: 'الشركاء', icon: Handshake },

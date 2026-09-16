@@ -18,10 +18,9 @@ export const PLACE_TYPE_LABELS = {
   mosques: 'المساجد',
   gas_centers: 'مراكز الغاز',
   government: 'الدوائر الحكومية',
-  hotels: 'الفنادق',
   markets: 'الأسواق',
   fuel: 'محطات الوقود',
-  banks: 'البنوك',
+  exchanges: 'مراكز الصرافة',
 };
 
 export const PLACE_TYPE_KEYS = Object.keys(PLACE_TYPE_LABELS);
@@ -30,8 +29,6 @@ export const ENTITY_LABELS = {
   news: 'الأخبار',
   projects: 'المشاريع',
   places: 'الأماكن',
-  events: 'الفعاليات',
-  videos: 'الفيديوهات',
   statistics: 'الإحصائيات',
   pages: 'الصفحات',
   partners: 'الشركاء',
@@ -39,9 +36,10 @@ export const ENTITY_LABELS = {
   settings: 'الإعدادات',
 };
 
+// إحداثيات مدينة طيبة الإمام (محافظة حماة)
 export const DEFAULT_MAP_CENTER = {
-  lat: Number(import.meta.env.VITE_MAP_CENTER_LAT) || 35.26389,
-  lng: Number(import.meta.env.VITE_MAP_CENTER_LNG) || 36.70667,
+  lat: Number(import.meta.env.VITE_MAP_CENTER_LAT) || 35.2685,
+  lng: Number(import.meta.env.VITE_MAP_CENTER_LNG) || 36.7175,
 };
 
 // المسار المخصص للوحة التحكم — يُعطى لمدير النظام فقط ولا يظهر في الواجهة العامة

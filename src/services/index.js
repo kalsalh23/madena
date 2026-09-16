@@ -8,8 +8,6 @@ const SELECT_MAP = {
   projects: 'id,name,slug,description,images,agency,start_date,end_date,progress,budget,latitude,longitude,status,expires_at,is_published,created_at,updated_at',
   project_updates: 'id,project_id,title,body,image,created_at',
   places: 'id,name,slug,description,images,category_id,phone,website,address,working_hours,latitude,longitude,expires_at,is_featured,is_published,categories(name,slug,color,icon)',
-  events: 'id,title,slug,description,images,category_id,start_date,end_date,location,latitude,longitude,organizer,expires_at,is_published,categories(name,slug,color,icon)',
-  videos: 'id,title,description,video_url,thumbnail,category_id,duration,expires_at,is_published,categories(name,slug,color,icon)',
   statistics: 'id,label,value,icon,link,expires_at,sort_order,is_published',
   pages: 'id,title,slug,content,expires_at,is_published',
   partners: 'id,name,logo,website,sort_order,is_published',
@@ -219,13 +217,12 @@ export const api = {
   async searchAll(query) {
     const q = query.trim();
     if (!q) return { news: [], projects: [], places: [], events: [] };
-    const [news, projects, places, events] = await Promise.all([
+    const [news, projects, places] = await Promise.all([
       this.list('news', { search: q, searchFields: ['title', 'excerpt', 'content'], perPage: 5, page: 1 }),
       this.list('projects', { search: q, searchFields: ['name', 'description'], perPage: 5, page: 1 }),
       this.list('places', { search: q, searchFields: ['name', 'description', 'address'], perPage: 5, page: 1 }),
-      this.list('events', { search: q, searchFields: ['title', 'description', 'location'], perPage: 5, page: 1 }),
     ]);
-    return { news: news.data, projects: projects.data, places: places.data, events: events.data };
+    return { news: news.data, projects: projects.data, places: places.data, events: [] };
   },
 };
 

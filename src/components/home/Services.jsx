@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
-  Newspaper, Building2, Map, Play, CalendarDays,
+  Newspaper, Building2, Map, BarChart3,
 } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import SectionHeading from '@/components/ui/SectionHeading';
@@ -10,8 +10,7 @@ const services = [
   { to: '/news', icon: Newspaper, title: 'الأخبار', desc: 'تابع آخر أخبار المدينة وبلدياتها.', color: '#084239' },
   { to: '/projects', icon: Building2, title: 'المشاريع', desc: 'تعرف على المشاريع التنموية الجارية.', color: '#958162' },
   { to: '/places', icon: Map, title: 'دليل الأماكن', desc: 'أهم الأماكن والخدمات في المدينة.', color: '#0d7562' },
-  { to: '/events', icon: CalendarDays, title: 'الفعاليات', desc: 'جدول الفعاليات والمناسبات القادمة.', color: '#5f0113' },
-  { to: '/videos', icon: Play, title: 'الفيديوهات', desc: 'جولات مصورة وتقارير عن المدينة.', color: '#958162' },
+  { to: '/statistics', icon: BarChart3, title: 'الإحصائيات', desc: 'أرقام وبيانات عن المدينة وسكانها.', color: '#5f0113' },
 ];
 
 export default function Services() {

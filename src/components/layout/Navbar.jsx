@@ -14,8 +14,6 @@ const links = [
   { to: '/projects', label: 'المشاريع' },
   { to: '/places', label: 'دليل المدينة' },
   { to: '/map', label: 'الخريطة' },
-  { to: '/videos', label: 'الفيديوهات' },
-  { to: '/events', label: 'الفعاليات' },
   { to: '/statistics', label: 'الإحصائيات' },
   { to: '/about-platform', label: 'عن المنصة' },
 ];

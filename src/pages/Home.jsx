@@ -6,8 +6,6 @@ import LatestNews from '@/components/home/LatestNews';
 import OngoingProjects from '@/components/home/OngoingProjects';
 import MapSection from '@/components/home/MapSection';
 import FeaturedPlaces from '@/components/home/FeaturedPlaces';
-import EventsSection from '@/components/home/EventsSection';
-import LatestVideos from '@/components/home/LatestVideos';
 import Partners from '@/components/home/Partners';
 import VoiceWelcome from '@/components/home/VoiceWelcome';
 import { useSEO } from '@/hooks/useSEO';
@@ -26,8 +24,6 @@ export default function Home() {
       <OngoingProjects />
       <MapSection />
       <FeaturedPlaces />
-      <EventsSection />
-      <LatestVideos />
       <Partners />
     </>
   );

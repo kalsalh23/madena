@@ -6,10 +6,9 @@ import SectionHeading from '@/components/ui/SectionHeading';
 import { MapPin } from 'lucide-react';
 import MapView from '@/components/map/MapView';
 import { api } from '@/services';
-import { useSettings } from '@/contexts/SettingsContext';
+import { DEFAULT_MAP_CENTER } from '@/lib/constants';
 
 export default function MapSection() {
-  const { settings } = useSettings();
   const { data: places, isLoading } = useQuery({
     queryKey: ['map-places'],
     queryFn: () => api.list('places', { perPage: 100, page: 1 }).then((r) => r.data),
@@ -49,7 +48,7 @@ export default function MapSection() {
           <div className="relative">
             <MapView
               markers={markers}
-              center={[Number(settings.map_center_lat) || 35.26389, Number(settings.map_center_lng) || 36.70667]}
+              center={[DEFAULT_MAP_CENTER.lat, DEFAULT_MAP_CENTER.lng]}
               height={460}
               scrollWheelZoom
             />

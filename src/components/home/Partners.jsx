@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import Container from '@/components/ui/Container';
 import SectionHeading from '@/components/ui/SectionHeading';
 import ImageWithFallback from '@/components/ui/ImageWithFallback';
+import LogoDownloads from '@/components/ui/LogoDownloads';
 import { api } from '@/services';
 
 export default function Partners() {
@@ -19,6 +20,10 @@ export default function Partners() {
       <div className="pattern-strip pattern-strip-fsefsaa mx-auto mb-10 max-w-5xl opacity-70" aria-hidden="true" />
       <Container>
         <SectionHeading eyebrow="شركاء النجاح" title="شركاء المدينة" />
+        <div className="mb-8 flex flex-col items-center gap-2 text-center">
+          <p className="text-sm text-ink-100">هل تحتاج شعار المنصة للاستخدام؟ حمّله مباشرة:</p>
+          <LogoDownloads />
+        </div>
         <div className="flex flex-wrap items-center justify-center gap-8">
           {partners.map((p, i) => (
             <motion.a

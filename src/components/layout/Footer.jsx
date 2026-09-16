@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import {
   Facebook, Twitter, Instagram, Youtube, Phone, Mail, MapPin, Code2,
-  Newspaper, Building2, Map, Play, CalendarDays, BarChart3,
+  Newspaper, Building2, Map, BarChart3,
 } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import Logo from './Logo';
@@ -11,8 +11,6 @@ const quickLinks = [
   { to: '/news', label: 'الأخبار', icon: Newspaper },
   { to: '/projects', label: 'المشاريع', icon: Building2 },
   { to: '/places', label: 'دليل المدينة', icon: Map },
-  { to: '/videos', label: 'الفيديوهات', icon: Play },
-  { to: '/events', label: 'الفعاليات', icon: CalendarDays },
   { to: '/statistics', label: 'الإحصائيات', icon: BarChart3 },
 ];
 

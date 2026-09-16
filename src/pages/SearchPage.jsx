@@ -6,7 +6,6 @@ import SearchBar from '@/components/ui/SearchBar';
 import NewsCard from '@/components/news/NewsCard';
 import ProjectCard from '@/components/projects/ProjectCard';
 import PlaceCard from '@/components/places/PlaceCard';
-import EventCard from '@/components/events/EventCard';
 import { api } from '@/services';
 import { useDebounce, useDocumentTitle } from '@/hooks';
 
@@ -33,7 +32,7 @@ export default function SearchPage() {
           <span className="rounded-full bg-gold-500/15 px-4 py-1 text-xs font-bold text-gold-700">بحث شامل</span>
           <h1 className="font-display text-3xl font-black text-brand-900 sm:text-4xl">البحث في طيبة الإمام</h1>
           <div className="w-full max-w-xl">
-            <SearchBar size="lg" placeholder="ابحث في الأخبار، المشاريع، الأماكن، الفعاليات..." />
+            <SearchBar size="lg" placeholder="ابحث في الأخبار، المشاريع، الأماكن..." />
           </div>
           {q && !isLoading && (
             <p className="text-sm text-ink-100">
@@ -79,14 +78,6 @@ export default function SearchPage() {
                 <h2 className="mb-5 text-lg font-bold text-brand-900">الأماكن <span className="text-ink-100">({data.places.length})</span></h2>
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                   {data.places.map((p) => <PlaceCard key={p.id} item={p} />)}
-                </div>
-              </section>
-            )}
-            {data.events.length > 0 && (
-              <section>
-                <h2 className="mb-5 text-lg font-bold text-brand-900">الفعاليات <span className="text-ink-100">({data.events.length})</span></h2>
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                  {data.events.map((e) => <EventCard key={e.id} item={e} />)}
                 </div>
               </section>
             )}

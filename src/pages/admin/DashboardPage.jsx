@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import {
-  Newspaper, Building2, Map, Play, CalendarDays,
+  Newspaper, Building2, Map,
   Users, ArrowLeft,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -14,8 +14,6 @@ const cards = [
   { label: 'الأخبار', entity: 'news', icon: Newspaper, to: `${ADMIN_BASE_PATH}/news` },
   { label: 'المشاريع', entity: 'projects', icon: Building2, to: `${ADMIN_BASE_PATH}/projects` },
   { label: 'الأماكن', entity: 'places', icon: Map, to: `${ADMIN_BASE_PATH}/places` },
-  { label: 'الفيديوهات', entity: 'videos', icon: Play, to: `${ADMIN_BASE_PATH}/videos` },
-  { label: 'الفعاليات', entity: 'events', icon: CalendarDays, to: `${ADMIN_BASE_PATH}/events` },
 ];
 
 export default function DashboardPage() {
