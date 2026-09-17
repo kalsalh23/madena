@@ -17,8 +17,40 @@ import { toLocalInputValue, formatDate } from '@/lib/utils';
 import { sendPushNotification } from '@/lib/pushNotifications';
 import { SITE } from '@/lib/constants';
 
-// الأنواع التي تُرسل إشعاراً عند إضافة عنصر جديد منشور
-const NOTIFY_ON_CREATE = ['news', 'ads'];
+// الأنواع التي تُرسل إشعاراً للمواطنين عند إضافة عنصر جديد منشور
+const NOTIFY_ON_CREATE = ['news', 'ads', 'projects', 'places'];
+
+// رابط الإشعار حسب نوع المحتوى — ينقل المواطن للمحتوى عند الضغط على الإشعار
+const notificationHrefOf = (entity, item) => {
+  switch (entity) {
+    case 'news':
+      return `/news/${item?.slug || item?.title}`;
+    case 'projects':
+      return `/projects/${item?.slug || item?.name}`;
+    case 'places':
+      return `/places/${item?.slug || item?.name}`;
+    case 'ads':
+      return item?.link || '/';
+    default:
+      return '/';
+  }
+};
+
+// وصف نوع المحتوى في عنوان الإشعار
+const notificationTypeOf = (entity, item) => {
+  switch (entity) {
+    case 'news':
+      return categoryNameOf(item) || 'خبر جديد';
+    case 'projects':
+      return 'مشروع جديد';
+    case 'places':
+      return 'مكان جديد';
+    case 'ads':
+      return 'إعلان جديد';
+    default:
+      return 'تحديث جديد';
+  }
+};
 
 // استخراج اسم التصنيف من الخبر/الإعلان
 const categoryNameOf = (item) => {
@@ -70,21 +102,18 @@ export default function EntityManager({
       queryClient.invalidateQueries({ queryKey: key });
       toast('تمت الإضافة بنجاح');
       setModal(null);
-      // إشعار دفع للمواطنين عند إضافة خبر/إعلان منشور — يصل لمشتركي الإشعارات
-      // فقط ولا يظهر أي أثر له أعلى الواجهة
+      // إشعار دفع خارجي للمواطنين عند إضافة: خبر / إعلان / مشروع / مكان
+      // يصل لمشتركي الإشعارات حتى خارج المنصة، والضغط عليه ينقلهم للمحتوى
       const published = res?.data?.is_published !== false;
       if (NOTIFY_ON_CREATE.includes(entity) && published) {
         const item = res?.data;
-        const href =
-          entity === 'news'
-            ? `/news/${item?.slug || item?.title}`
-            : item?.link || '/';
-        const type =
-          entity === 'news'
-            ? categoryNameOf(item) || 'خبر جديد'
-            : 'إعلان جديد';
-        const headline = item?.title || (entity === 'news' ? 'خبر جديد' : 'إعلان جديد');
-        const glimpse = snippetOf(item?.excerpt || item?.body || item?.description || '');
+        const href = notificationHrefOf(entity, item);
+        const type = notificationTypeOf(entity, item);
+        const headline =
+          item?.title || item?.name || (entity === 'news' ? 'خبر جديد' : 'محتوى جديد');
+        const glimpse = snippetOf(
+          item?.excerpt || item?.body || item?.description || '',
+        );
         // العنوان: اسم المنصة — نوع المحتوى
         const pushTitle = `${SITE.name} — ${type}`;
         // النص: عنوان المحتوى + لمحة سريعة عنه
