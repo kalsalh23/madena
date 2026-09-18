@@ -3,8 +3,7 @@ import EntityManager from '@/components/admin/EntityManager';
 import ImageWithFallback from '@/components/ui/ImageWithFallback';
 import Badge from '@/components/ui/Badge';
 import { useCategories } from '@/hooks';
-import { formatDate } from '@/lib/utils';
-import { generateSlug } from '@/lib/utils';
+import { formatDate, generateSlug, toLocalInputValue } from '@/lib/utils';
 import { useSEO } from '@/hooks/useSEO';
 
 export default function NewsManagePage() {
@@ -49,12 +48,13 @@ export default function NewsManagePage() {
       columns={columns}
       fields={fields}
       searchFields={['title', 'excerpt']}
-      defaultValues={{ is_published: true, published_at: new Date().toISOString().slice(0, 16), images: [] }}
+      defaultValues={{ is_published: true, published_at: toLocalInputValue(new Date()), images: [] }}
       transform={(v) => {
         const slug = v.slug || v.title;
         return {
           ...v,
           slug: generateSlug(slug),
+          // قيمة الحقل بتوقيت الجهاز المحلي — تُحوَّل إلى UTC الصحيح للتخزين
           published_at: v.published_at ? new Date(v.published_at).toISOString() : new Date().toISOString(),
         };
       }}
