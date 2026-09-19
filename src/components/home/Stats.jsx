@@ -9,6 +9,9 @@ import { resolveIcon } from '@/lib/iconMap';
 import { useCountUp } from '@/hooks';
 import { formatNumber } from '@/lib/utils';
 
+/* قسم «مدينتنا بالأرقام» — يعرض إحصائيات المدينة فقط.
+   أقسام دليل المدينة تظهر في صفحة الدليل المخصصة /places */
+
 function StatCard({ stat, index }) {
   const Icon = resolveIcon(stat.icon);
   const count = useCountUp(stat.value);
@@ -45,64 +48,13 @@ function StatCard({ stat, index }) {
   );
 }
 
-function CategoryCard({ category, count, index }) {
-  const Icon = resolveIcon(category.icon);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ delay: index * 0.06, duration: 0.5 }}
-      className="card-surface group p-5 hover:-translate-y-1 hover:shadow-lift"
-    >
-      <Link to={`/places?cat=${category.slug}`} className="flex items-center gap-4">
-        <span
-          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl"
-          style={{ backgroundColor: `${category.color}1a`, color: category.color }}
-        >
-          {Icon ? <Icon className="h-6 w-6" /> : null}
-        </span>
-        <div>
-          <div className="text-sm font-bold text-ink-900 group-hover:text-brand-700">{category.name}</div>
-          <div className="text-xs text-ink-100">
-            {count > 0 ? `${formatNumber(count)} موقع مسجل` : 'دليل المدينة'}
-          </div>
-        </div>
-        <ArrowLeft className="mr-auto h-4 w-4 text-brand-700 opacity-0 transition-opacity group-hover:opacity-100" />
-      </Link>
-    </motion.div>
-  );
-}
-
 export default function Stats() {
   const { data: stats, isLoading: statsLoading } = useQuery({
     queryKey: ['statistics'],
     queryFn: () => api.list('statistics', { order: 'sort_order', orderAsc: true }).then((r) => r.data),
   });
 
-  const { data: categories, isLoading: catsLoading } = useQuery({
-    queryKey: ['stats-place-categories'],
-    queryFn: () =>
-      api
-        .list('categories', { filters: { type: 'places', is_published: true }, order: 'sort_order', orderAsc: true })
-        .then((r) => r.data),
-  });
-
-  const { data: places } = useQuery({
-    queryKey: ['stats-place-counts'],
-    queryFn: () => api.list('places', { filters: { is_published: true }, perPage: 500, page: 1 }).then((r) => r.data),
-    staleTime: 5 * 60 * 1000,
-  });
-
-  if (statsLoading || catsLoading || !stats?.length) return null;
-
-  const hiddenSlugs = ['hotels', 'landmarks', 'fuel', 'parks', 'gas-centers'];
-  const counts = {};
-  for (const p of places || []) {
-    if (p.category?.slug) counts[p.category.slug] = (counts[p.category.slug] || 0) + 1;
-  }
-  const sections = (categories || []).filter((c) => !hiddenSlugs.includes(c.slug));
+  if (statsLoading || !stats?.length) return null;
 
   return (
     <section className="py-16">
@@ -113,19 +65,6 @@ export default function Stats() {
             <StatCard key={s.id} stat={s} index={i} />
           ))}
         </div>
-
-        {sections.length > 0 && (
-          <>
-            <h3 className="mb-5 mt-12 text-center text-base font-bold text-ink-100">
-              أقسام دليل المدينة — انقر على أي قسم لاستعراض مواقعه
-            </h3>
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-              {sections.map((c, i) => (
-                <CategoryCard key={c.id} category={c} count={counts[c.slug] || 0} index={i} />
-              ))}
-            </div>
-          </>
-        )}
       </Container>
     </section>
   );
