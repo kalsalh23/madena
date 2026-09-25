@@ -18,6 +18,10 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
+// مدة احتفاظ خوادم الدفع بالرسالة حتى عودة جهاز المواطن للاتصال
+// 7 أيام — يضمن وصول الإشعار حتى لمن كان غير متصل لحظة النشر
+const PUSH_TTL = 604800;
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });
@@ -52,19 +56,18 @@ Deno.serve(async (req) => {
           },
           payload,
           {
-            // تسليم فوري: أولوية عالية + مدة صلاحية قصيرة حتى لا يُرجَّأ التسليم
-            TTL: 300,
+            TTL: PUSH_TTL,
             urgency: "high",
-            topic: "madena-notify",
           }
         );
         results.sent += 1;
       } catch (err) {
-        // 404/410 = الاشتراك لم يعد صالحاً، احذفه
+        // 404/410 = الاشتراك لم يعد صالحاً نهائياً، احذفه
         if (err && (err.statusCode === 404 || err.statusCode === 410)) {
           await supabase.from("push_subscriptions").delete().eq("id", sub.id);
           results.removed += 1;
         } else {
+          // أخطاء عابرة (شبكة/معدل): يُعاد المحاولة معها في الإرسال التالي
           results.failed += 1;
         }
       }

@@ -84,17 +84,33 @@ export async function disablePushNotifications() {
   localStorage.removeItem('push-enabled');
 }
 
-/* إعادة تفعيل تلقائي عند فتح الموقع إن كان مفعّلاً سابقاً */
+/* مزامنة الاشتراك عند كل زيارة — الشفاء الذاتي ضد توقف الإشعارات:
+   1) إذا كان الاشتراك موجوداً في المتصفح يُعاد حفظه في القاعدة دائماً
+      (يصلح أي حذف عرضي من الخادم ويحدّث last_seen_at)
+   2) إذا فُقد الاشتراك محلياً يُعاد إنشاؤه تلقائياً بدون تدخل المواطن */
 export async function syncPushSubscription() {
   if (!isPushSupported() || !isSubscribedLocally()) return;
   try {
     const reg = await navigator.serviceWorker.getRegistration('/sw.js');
     if (!reg) return;
-    const sub = await reg.pushManager.getSubscription();
-    if (!sub) {
-      const { error } = await enablePushNotifications();
-      if (error) throw error;
+    let sub = await reg.pushManager.getSubscription();
+    if (sub) {
+      const { endpoint, keys } = sub.toJSON();
+      if (keys?.p256dh && keys?.auth) {
+        await supabase.from('push_subscriptions').upsert(
+          {
+            endpoint,
+            p256dh: keys.p256dh,
+            auth: keys.auth,
+            user_agent: navigator.userAgent,
+            last_seen_at: new Date().toISOString(),
+          },
+          { onConflict: 'endpoint' }
+        );
+      }
+      return;
     }
+    await enablePushNotifications();
   } catch {
     /* تجاهل — الموقع الجديد قد يتطلب إذناً مجدداً */
   }
